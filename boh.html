@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Autocomplete with Algolia Places</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/algoliaplaces@4.10.0/dist/algolia-places.min.css" />
+    <style>
+        /* Optional: Some basic styling for the input */
+        #address {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Your Address</h1>
+    <input id="address" type="text" placeholder="Enter your address">
+
+    <script src="https://cdn.jsdelivr.net/npm/algoliaplaces@4.10.0/dist/algolia-places.min.js"></script>
+    <script>
+        import { algoliasearch } from 'algoliasearch';
+        // Initialize Algolia Places once the script is loaded
+        const placesAutocomplete = algoliaplaces({
+            appId: '14EWYLIH9X', // Replace with your Algolia App ID
+            apiKey: 'bf3b3b7b7f9a0e4f5c7ff95ef9058ef5', // Replace with your Algolia API Key
+            container: document.querySelector('#address')
+        });
+
+        // Listen for address selection
+        placesAutocomplete.on('change', (e) => {
+            console.log(e.suggestion); // Selected address details
+        });
+
+        placesAutocomplete.on('error', (error) => {
+            console.error(error); // Handle errors
+        });
+    </script>
+</body>
+</html>
+
+
