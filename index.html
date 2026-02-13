@@ -68,14 +68,14 @@
         }
 
         .profile-img-container {
-            width: 230px; /* INCREASED SIZE */
-            height: 230px; /* INCREASED SIZE */
+            width: 230px; 
+            height: 230px; 
             border-radius: 50%;
             padding: 4px;
             background: var(--accent-gradient);
             margin-bottom: 20px;
             box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-            overflow: hidden; /* Ensures image stays in circle */
+            overflow: hidden; 
         }
 
         .profile-img {
@@ -84,8 +84,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--bg-color);
-            /* MOVES IMAGE DOWN inside the circle. 
-               Adjust the % if needed (e.g. 10% moves it further down, 50% centers it) */
+            /* Adjust this if you want to move the face up/down */
             object-position: center 20%; 
         }
 
@@ -127,11 +126,11 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            justify-content: center; /* CENTER GRID ITEMS */
+            justify-content: center;
         }
 
         .affiliation-item {
-            text-align: center; /* CENTER TEXT INSIDE ITEMS */
+            text-align: center;
         }
 
         .affiliation-item h4 { color: #fff; margin-bottom: 5px; }
@@ -171,7 +170,7 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .section-title { font-size: 1.5rem; }
-            .affiliations-grid { justify-content: center; } /* Ensure centering on mobile too */
+            .affiliations-grid { justify-content: center; } 
         }
     </style>
 </head>
@@ -284,7 +283,7 @@
                 </p>
                 <div id="scholar-feed">
                     <div class="project-list">
-                         <a href="#"><span>Waiting for first publication fetch...</span> <i class="fas fa-chevron-right"></i></a>
+                         <a href="#"><span>Waiting for fetch...</span> <i class="fas fa-sync fa-spin"></i></a>
                     </div>
                 </div>
             </div>
@@ -335,6 +334,44 @@
             },
             "retina_detect": true
         });
+
+        /* --- GOOGLE SCHOLAR JSON FETCH --- */
+        fetch('publications.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('scholar-feed');
+                container.innerHTML = ''; // Clear the "Waiting..." text
+
+                if (data.length === 0) {
+                    container.innerHTML = '<p>No publications found yet.</p>';
+                    return;
+                }
+
+                // Loop through each publication and create the HTML
+                data.forEach(pub => {
+                    const div = document.createElement('div');
+                    div.className = 'project-list';
+                    
+                    // IMPORTANT: Replace 'YOUR_SCHOLAR_ID_HERE' below with your actual ID as a fallback
+                    const href = pub.url && pub.url !== '#' ? pub.url : 'https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID_HERE';
+                    
+                    div.innerHTML = `
+                        <a href="${href}" target="_blank">
+                            <span>${pub.title}</span>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <span style="font-size:0.8rem; color:var(--text-muted);">${pub.year}</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </a>
+                    `;
+                    container.appendChild(div);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading publications:', error);
+                document.getElementById('scholar-feed').innerHTML = 
+                    '<div class="project-list"><a href="https://scholar.google.com/citations?hl=it&user=1XGhMwgAAAAJ"><span>Check my Google Scholar Profile</span> <i class="fas fa-external-link-alt"></i></a></div>';
+            });
     </script>
 </body>
 </html>
