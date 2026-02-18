@@ -24,7 +24,7 @@ jobs:
         pip install scholarly
 
     - name: Run scraper script
-      run: python scholar_scraper.py
+      run: python python_scraper.py
 
     - name: Commit and push changes
       run: |
