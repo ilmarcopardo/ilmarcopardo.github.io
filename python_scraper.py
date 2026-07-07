@@ -50,6 +50,8 @@ def fetch_publications():
 
     except Exception as e:
         print(f"Error occurred: {e}")
+        import sys
+        sys.exit(1)
 
 if __name__ == "__main__":
     fetch_publications()
