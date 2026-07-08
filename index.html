@@ -48,7 +48,8 @@
 
         /* --- LAYOUT UTILITIES --- */
         .container {
-            max-width: 1200px;
+            width: 100%;
+            padding: 20px 5%;
             margin: 0 auto;
             padding: 20px;
             position: relative;
@@ -120,31 +121,10 @@
             -webkit-backdrop-filter: blur(16px);
             border: var(--border);
             border-radius: 20px;
-            padding: 40px;
+            padding: 25px;
             box-shadow: var(--glass-shadow);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
             position: relative;
             overflow: hidden;
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            border-color: rgba(0, 212, 255, 0.2);
-        }
-        
-        .card:hover::before {
-            opacity: 1;
         }
 
         .section-title {
@@ -160,16 +140,64 @@
             font-size: 1.1rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6;
         }
 
-        /* --- MEDIA GRIDS --- */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+                /* --- MEDIA GRIDS & SPLIT LAYOUT --- */
+        .split-layout {
+            display: flex;
+            gap: 40px;
+            align-items: center;
             margin-top: 20px;
         }
+        
+        @media (max-width: 900px) {
+            .split-layout { flex-direction: column !important; }
+        }
 
-        .media-grid-large {
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        .split-layout.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .split-media {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .split-text {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .split-text.card {
+            padding: 30px;
+        }
+
+        .split-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .placeholder-text {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+                .media-masonry {
+            column-count: 2;
+            column-gap: 15px;
+        }
+        
+        .media-masonry .media-item {
+            break-inside: avoid;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .media-masonry { column-count: 1; }
         }
 
         .media-item {
@@ -185,18 +213,21 @@
         .media-item img, .media-item video {
             width: 100%;
             height: auto;
-            object-fit: cover;
             display: block;
             border-bottom: 1px solid rgba(255,255,255,0.05);
+            margin: auto 0;
         }
 
         .media-caption {
-            padding: 15px;
-            font-size: 0.95rem;
+            padding: 10px;
+            font-size: 0.9rem;
             color: var(--text-main);
             text-align: center;
             background: rgba(20, 20, 25, 0.8);
             backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* --- AFFILIATIONS --- */
@@ -244,32 +275,6 @@
         .list-item span { color: var(--text-main); font-weight: 500; font-size: 1.1rem; }
         .list-item i { font-size: 0.9rem; color: var(--text-muted); transition: 0.3s;}
         .list-item:hover i { color: var(--accent); }
-
-        /* --- PUBLICATIONS & AWARDS GRID --- */
-        .pub-award-layout {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 900px) {
-            .pub-award-layout { grid-template-columns: 1fr; }
-        }
-
-        .award-badge {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-        }
-        .award-badge img {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .award-badge h4 { color: #ffd700; margin-bottom: 5px; }
 
         /* --- EDUCATION --- */
         .edu-item { margin-bottom: 25px; padding-left: 20px; border-left: 2px solid var(--accent-purple); position: relative;}
@@ -335,73 +340,109 @@
             </div>
         </section>
 
-        <!-- ROBOTICS SHOWCASE -->
+                        <!-- ROBOTICS SHOWCASE -->
         <section>
             <div class="card">
                 <h3 class="section-title"><i class="fas fa-robot"></i> Cognitive Humanoid Robotics</h3>
                 <p class="section-subtitle">
                     Working directly with advanced humanoid platforms, focusing on hyper-realistic control, collision avoidance, and facial retargeting in real-time to create believable interactions.
                 </p>
-                <div class="media-grid media-grid-large">
-                    <div class="media-item">
-                        <video autoplay loop muted playsinline>
-                            <source src="images/robotics/abel_moving.mp4" type="video/mp4">
-                        </video>
-                        <div class="media-caption"><strong>Abel</strong>: Real-time collision avoidance with MoveIt</div>
+                
+                <div class="split-layout">
+                    <!-- MEDIA LEFT -->
+                    <div class="split-media" style="display: flex; flex-direction: row; gap: 15px;">
+                        <!-- Images Column -->
+                        <div class="media-masonry" style="flex: 1; margin-top: 0;">
+                            <div class="media-item">
+                                <img src="images/robotics/abel_and_seth.jpg" alt="Abel and Seth">
+                                <div class="media-caption">Abel & Seth</div>
+                            </div>
+                            <a href="https://forelab.unipi.it/technologies/abel-new-generation-hyper-realistic-humanoid-robot" target="_blank" class="media-item" style="text-decoration: none;">
+                                <img src="images/robotics/Abel.jpg" alt="Abel Close up">
+                                <div class="media-caption" style="color: var(--accent);">Abel Close-up <i class="fas fa-external-link-alt fa-xs" style="margin-left: 5px;"></i></div>
+                            </a>
+                            <div class="media-item">
+                                <img src="images/robotics/seth.jpg" alt="Seth Close up">
+                                <div class="media-caption">Seth Close-up</div>
+                            </div>
+                        </div>
+                        <!-- Videos Column -->
+                        <div style="display: flex; flex-direction: row; gap: 15px; flex: 1.5;">
+                            <div class="media-item" style="flex: 1;">
+                                <video autoplay loop muted playsinline>
+                                    <source src="images/robotics/abel_moving.mp4" type="video/mp4">
+                                </video>
+                                <div class="media-caption"><strong>Abel</strong>: Real-time collision avoidance with MoveIt</div>
+                            </div>
+                            <div class="media-item" style="flex: 1;">
+                                <video autoplay loop muted playsinline>
+                                    <source src="images/robotics/seth_facial_retargeting.mp4" type="video/mp4">
+                                </video>
+                                <div class="media-caption"><strong>Seth</strong>: Real-time facial retargeting during conversation</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="media-item">
-                        <video autoplay loop muted playsinline>
-                            <source src="images/robotics/seth_facial_retargeting.mp4" type="video/mp4">
-                        </video>
-                        <div class="media-caption"><strong>Seth</strong>: Real-time facial retargeting during conversation</div>
-                    </div>
-                </div>
-                <div class="media-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                    <div class="media-item">
-                        <img src="images/robotics/abel_and_seth.jpg" alt="Abel and Seth">
-                        <div class="media-caption">Abel & Seth</div>
-                    </div>
-                    <div class="media-item">
-                        <img src="images/robotics/Abel.jpg" alt="Abel Close up">
-                        <div class="media-caption">Abel Close-up</div>
-                    </div>
-                    <div class="media-item">
-                        <img src="images/robotics/seth.jpg" alt="Seth Close up">
-                        <div class="media-caption">Seth Close-up</div>
+                    
+                    <!-- TEXT RIGHT -->
+                    <div class="split-text card">
+                        <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Bringing Humanoids to Life</h4>
+                        <p class="placeholder-text">
+                            [Placeholder text] In this section, we explore the intricate process of mapping human facial expressions directly onto humanoid platforms like Abel and Seth in real-time. This involves extracting nuanced facial landmarks and translating them into actuator commands that preserve the emotional intent of the user.
+                        </p>
+                        <p class="placeholder-text">
+                            [Placeholder text] Additionally, real-time collision avoidance is a critical component for safe human-robot interaction. By utilizing frameworks such as MoveIt, the robots are capable of dynamically replanning their trajectories to avoid obstacles and moving humans, ensuring both safety and fluid motion during tasks.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- AFFECTIVE COMPUTING & SAD -->
+                <!-- AFFECTIVE COMPUTING & SAD -->
         <section>
             <div class="card">
                 <h3 class="section-title"><i class="fas fa-heartbeat"></i> Affective Computing & Bio-Signals</h3>
                 <p class="section-subtitle">
                     The <strong>BRAVE Project</strong> aims to support individuals with Social Anxiety Disorder (SAD). We capture biosignals (ECG, EDA) in immersive VR scenarios to extract features and detect anxiety levels in real-time, bridging the gap toward emotionally-aware cognitive architectures.
                 </p>
-                <div class="media-grid media-grid-large">
-                    <div class="media-item">
-                        <img src="images/sad/brave_exp.png" alt="VR Scenario Setup">
-                        <div class="media-caption">Immersive VR scenario with biometric sensor array</div>
+                
+                <div class="split-layout reverse">
+                    <!-- MEDIA RIGHT -->
+                    <div class="split-media">
+                        <div class="media-masonry" style="width: 70%; margin: 0 auto;">
+                            <div class="media-item">
+                                <img src="images/sad/brave_exp.png" alt="VR Scenario Setup">
+                                <div class="media-caption">Immersive VR scenario with biometric sensor array</div>
+                            </div>
+                            <div class="media-item">
+                                <img src="images/sad/brave_realtime.jpg" alt="Realtime Data Interface">
+                                <div class="media-caption">Real-time interface: ECG & EDA to anxiety features</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; max-width: 450px; margin: 15px auto 0; justify-content: center;">
+                            <div class="media-item" style="flex: 1;">
+                                <video autoplay loop muted playsinline>
+                                    <source src="images/sad/brave_video_cut.mp4" type="video/mp4">
+                                </video>
+                                <div class="media-caption">Real-time anxiety level detection during the VR experience</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="media-item">
-                        <img src="images/sad/brave_realtime.jpg" alt="Realtime Data Interface">
-                        <div class="media-caption">Real-time interface: ECG & EDA to anxiety features</div>
-                    </div>
-                </div>
-                <div class="media-grid" style="grid-template-columns: 1fr;">
-                    <div class="media-item">
-                        <video autoplay loop muted playsinline>
-                            <source src="images/sad/brave_video_cut.mp4" type="video/mp4">
-                        </video>
-                        <div class="media-caption">Real-time anxiety level detection during the VR experience</div>
+                    
+                    <!-- TEXT LEFT -->
+                    <div class="split-text card">
+                        <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Measuring Emotional Responses</h4>
+                        <p class="placeholder-text">
+                            [Placeholder text] By integrating electrocardiography (ECG) and electrodermal activity (EDA) sensors, we can reliably monitor physiological changes that correspond to stress and anxiety in real-time. This continuous stream of biometric data is analyzed to provide immediate feedback on the patient's emotional state.
+                        </p>
+                        <p class="placeholder-text">
+                            [Placeholder text] The immersive Virtual Reality environments are carefully designed to simulate social situations that might trigger anxiety. This safe, controlled exposure allows researchers to gather highly accurate data and eventually adapt the virtual scenario dynamically based on the user's detected stress levels.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- UNREAL ENGINE & METAHUMANS -->
+                <!-- UNREAL ENGINE & METAHUMANS -->
         <section>
             <div class="card">
                 <h3 class="section-title"><i class="fas fa-cube"></i> Unreal Engine & MetaHumans</h3>
@@ -409,58 +450,89 @@
                     Utilizing Unreal Engine to craft ultra-realistic MetaHumans for simulation, interactive Holobox displays, and digital twin recreations from raw point cloud data.
                 </p>
                 
-                <h4 style="margin: 30px 0 15px; color: #fff; font-size: 1.3rem;">Holobox Integration (AOI & ADA)</h4>
-                <div class="media-grid">
-                    <div class="media-item">
-                        <img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA">
-                        <div class="media-caption">AOI & ADA Interactive Avatars</div>
+                <div class="split-layout">
+                    <!-- MEDIA LEFT -->
+                    <div class="split-media" style="display: flex; flex-direction: row; gap: 15px;">
+                        <!-- Left Column (Horizontal Video + Images) -->
+                        <div style="display: flex; flex-direction: column; gap: 15px; flex: 1;">
+                            <div class="media-item">
+                                <video autoplay loop muted playsinline>
+                                    <source src="images/ue/aoi_cut.mp4" type="video/mp4">
+                                </video>
+                                <div class="media-caption">3-angle split render required for holographic illusion</div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; gap: 15px;">
+                                <div class="media-item" style="flex: 1;">
+                                    <img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA">
+                                </div>
+                                <div class="media-item" style="flex: 1;">
+                                    <img src="images/ue/aoi_cams.jpg" alt="AOI Cameras">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right Column (Vertical Video) -->
+                        <div style="display: flex; flex-direction: column; flex: 0.7; max-width: 280px;">
+                            <div class="media-item" style="height: 100%; justify-content: center; background: transparent; border: none;">
+                                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
+                                    <source src="images/ue/aoi_holobox.mp4" type="video/mp4">
+                                </video>
+                                <div class="media-caption">The final result projected inside the physical Holobox</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="media-item">
-                        <img src="images/ue/aoi_cams.jpg" alt="AOI Cameras">
-                        <div class="media-caption">Multi-camera setup for Holobox rendering</div>
-                    </div>
-                </div>
-                <div class="media-grid media-grid-large">
-                    <div class="media-item">
-                        <video autoplay loop muted playsinline>
-                            <source src="images/ue/aoi_cut.mp4" type="video/mp4">
-                        </video>
-                        <div class="media-caption">3-angle split render required for holographic illusion</div>
-                    </div>
-                    <div class="media-item">
-                        <video autoplay loop muted playsinline>
-                            <source src="images/ue/aoi_holobox.mp4" type="video/mp4">
-                        </video>
-                        <div class="media-caption">The final result projected inside the physical Holobox</div>
+                    
+                    <!-- TEXT RIGHT -->
+                    <div class="split-text card">
+                        <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Holobox Integration</h4>
+                        <p class="placeholder-text">
+                            [Placeholder text] Displaying MetaHumans in a physical Holobox requires a complex multi-camera setup within Unreal Engine. The scene must be rendered from multiple specific angles simultaneously to construct the convincing illusion of a 3D holographic presence in the real world.
+                        </p>
+                        <p class="placeholder-text">
+                            [Placeholder text] These digital avatars, such as AOI and ADA, are fully interactive. By utilizing real-time rendering capabilities, the avatars can respond to audience inputs with minimal latency, making the holographic experience feel entirely seamless and alive.
+                        </p>
                     </div>
                 </div>
 
-                <h4 style="margin: 40px 0 15px; color: #fff; font-size: 1.3rem;">Digital Recreations: Mazzei & Jefferson</h4>
-                <p class="section-subtitle" style="font-size: 0.95rem;">
-                    Extracting meshes from point clouds directly in Unreal Engine to generate, animate, and simulate historically significant MetaHumans.
-                </p>
-                <div class="media-grid">
-                    <div class="media-item">
-                        <img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static Meshes">
-                        <div class="media-caption">Point clouds converted to static meshes</div>
+                <div style="border-top: 1px solid rgba(255,255,255,0.05); margin: 40px 0;"></div>
+
+                <div class="split-layout reverse">
+                    <!-- MEDIA RIGHT -->
+                    <div class="split-media">
+                        <div class="media-masonry" style="width: 70%; margin: 0 auto;">
+                            <div class="media-item">
+                                <img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static Meshes" style="aspect-ratio: 4/3; object-fit: cover;">
+                                <div class="media-caption">Point clouds converted to static meshes</div>
+                            </div>
+                            <div class="media-item">
+                                <img src="images/ue/jefferson_hair.jpg" alt="Hair Grooming" style="aspect-ratio: 4/3; object-fit: cover;">
+                                <div class="media-caption">Detailed hair grooming in UE</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-direction: row; gap: 15px; width: 90%; margin: 15px auto 0; justify-content: center;">
+                            <div class="media-item" style="flex: 1; min-width: 140px;">
+                                <video autoplay loop muted playsinline style="aspect-ratio: 4/5; object-fit: cover;">
+                                    <source src="images/ue/mazzei_cut.mp4" type="video/mp4">
+                                </video>
+                                <div class="media-caption">Philip Mazzei: Fully animated MetaHuman</div>
+                            </div>
+                            <div class="media-item" style="flex: 1; min-width: 140px;">
+                                <video autoplay loop muted playsinline style="aspect-ratio: 4/5; object-fit: cover;">
+                                    <source src="images/ue/jeff_cut.mp4" type="video/mp4">
+                                </video>
+                                <div class="media-caption">Thomas Jefferson: Fully animated MetaHuman</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="media-item">
-                        <img src="images/ue/jefferson_hair.jpg" alt="Hair Grooming">
-                        <div class="media-caption">Detailed hair grooming in UE</div>
-                    </div>
-                </div>
-                <div class="media-grid media-grid-large">
-                    <div class="media-item">
-                        <video autoplay loop muted playsinline>
-                            <source src="images/ue/mazzei_cut.mp4" type="video/mp4">
-                        </video>
-                        <div class="media-caption">Philip Mazzei: Fully animated MetaHuman</div>
-                    </div>
-                    <div class="media-item">
-                        <video autoplay loop muted playsinline>
-                            <source src="images/ue/jeff_cut.mp4" type="video/mp4">
-                        </video>
-                        <div class="media-caption">Thomas Jefferson: Fully animated MetaHuman</div>
+
+                    <!-- TEXT LEFT -->
+                    <div class="split-text card">
+                        <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Digital Recreations: Mazzei & Jefferson</h4>
+                        <p class="placeholder-text">
+                            [Placeholder text] The process of reviving historical figures begins with high-density point clouds. These point clouds are meticulously converted into workable static meshes directly within Unreal Engine, forming the foundational geometry for the characters.
+                        </p>
+                        <p class="placeholder-text">
+                            [Placeholder text] Once the base meshes are established, advanced grooming tools are employed to recreate hair, eyebrows, and other fine details. The final step involves rigging these intricate models to the MetaHuman framework, allowing for full body and facial animations that bring historical personalities back to life.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -498,10 +570,11 @@
             </div>
         </section>
 
-        <!-- PUBLICATIONS & AWARDS (COMBINED) -->
-        <section id="publications">
-            <div class="pub-award-layout">
-                <div class="card">
+                <!-- BOTTOM LAYOUT: PUBLICATIONS (70) AND AWARDS (30) -->
+        <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 100px;">
+            <!-- PUBLICATIONS -->
+            <section id="publications" style="flex: 7; min-width: 300px; margin-bottom: 0;">
+                <div class="card" style="height: 100%;">
                     <h3 class="section-title"><i class="fas fa-book-open"></i> Publications</h3>
                     <p style="color:var(--text-muted); font-style: italic; margin-bottom: 20px;">
                         From Google Scholar
@@ -512,17 +585,24 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="card award-badge">
-                    <h4><i class="fas fa-award"></i> Featured Award</h4>
-                    <img src="images/best_graph_abstract.jpg" alt="Best Graphical Abstract">
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">
-                        <strong>IEEE MetroXraine 2025</strong><br>
-                        Best Graphical Abstract
-                    </p>
+            </section>
+
+            <!-- AWARDS -->
+            <section id="awards" style="flex: 3; min-width: 300px; margin-bottom: 0;">
+                <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 30px; height: 100%;">
+                    <div style="width: 100%;">
+                        <img src="images/best_graph_abstract.jpg" alt="Best Graphical Abstract" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); display: block; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                    </div>
+                    <div style="text-align: center;">
+                        <h3 class="section-title" style="margin-bottom: 15px; justify-content: center;"><i class="fas fa-award"></i> Featured Award</h3>
+                        <p style="font-size: 1.2rem; color: var(--text-main);">
+                            <strong>IEEE MetroXraine 2025</strong><br>
+                            <span style="color: var(--text-muted); font-size: 1rem;">Best Graphical Abstract</span>
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <!-- SELECTED PROJECTS -->
         <section>
@@ -583,39 +663,53 @@
         });
 
         /* --- GOOGLE SCHOLAR JSON FETCH --- */
+        const fallbackPublications = [
+            { "title": "Multimodal Classification of Social Anxiety Using Continuous Self-Rating and Physiological Data in Virtual Reality", "year": "2026", "url": "#", "venue": "IEEE Transactions on Affective Computing, 2026" },
+            { "title": "Deep Learning-Based Classification of Social Anxiety Disorder Using Continuous Self-Reported Anxiety in Virtual Reality", "year": "2025", "url": "#", "venue": "2025 IEEE Medical Measurements & Applications (MeMeA), 1-6, 2025" },
+            { "title": "Development of a human-inspired long-term memory for interactive conversational agents", "year": "2025", "url": "#", "venue": "2025 IEEE International Conference on Metrology for eXtended Reality …, 2025" },
+            { "title": "A comparative evaluation of function-calling llms in a cognitive architecture", "year": "2025", "url": "#", "venue": "2025 IEEE International Conference on Metrology for eXtended Reality …, 2025" },
+            { "title": "Interpersonal Sympathetic Coupling in Emotional Contagion: A Preliminary Study Using Directed Coherence", "year": "2025", "url": "#", "venue": "2025 IEEE Medical Measurements & Applications (MeMeA), 1-6, 2025" }
+        ];
+
+        function renderPublications(data) {
+            const container = document.getElementById('scholar-feed');
+            container.innerHTML = ''; 
+
+            if (data.length === 0) {
+                container.innerHTML = '<div class="list-item"><span>No publications found yet.</span></div>';
+                return;
+            }
+
+            data.forEach(pub => {
+                const href = pub.url && pub.url !== '#' ? pub.url : 'https://scholar.google.com/citations?user=1XGhMwgAAAAJ';
+                const a = document.createElement('a');
+                a.href = href;
+                a.target = '_blank';
+                a.className = 'list-item';
+                const venueStr = pub.venue ? `<span style="display:block; font-size:0.85rem; color:var(--accent); margin-top:3px; font-style:italic;">${pub.venue}</span>` : '';
+                a.innerHTML = `
+                    <div>
+                        <span style="display:block; margin-bottom:5px;">${pub.title}</span>
+                        ${venueStr}
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="font-size:0.85rem; color:var(--text-muted);">${pub.year}</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                `;
+                container.appendChild(a);
+            });
+        }
+
         fetch('publications.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('scholar-feed');
-                container.innerHTML = ''; 
-
-                if (data.length === 0) {
-                    container.innerHTML = '<div class="list-item"><span>No publications found yet.</span></div>';
-                    return;
-                }
-
-                data.forEach(pub => {
-                    const href = pub.url && pub.url !== '#' ? pub.url : 'https://scholar.google.com/citations?user=1XGhMwgAAAAJ';
-                    
-                    const a = document.createElement('a');
-                    a.href = href;
-                    a.target = '_blank';
-                    a.className = 'list-item';
-                    
-                    a.innerHTML = `
-                        <span>${pub.title}</span>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <span style="font-size:0.85rem; color:var(--text-muted);">${pub.year}</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </div>
-                    `;
-                    container.appendChild(a);
-                });
+            .then(response => {
+                if (!response.ok) throw new Error("Network error");
+                return response.json();
             })
+            .then(data => renderPublications(data))
             .catch(error => {
-                console.error('Error loading publications:', error);
-                document.getElementById('scholar-feed').innerHTML = 
-                    '<a href="https://scholar.google.com/citations?hl=it&user=1XGhMwgAAAAJ" target="_blank" class="list-item"><span>Check my Google Scholar Profile</span> <i class="fas fa-external-link-alt"></i></a>';
+                console.warn('Fetch failed (likely CORS on local file://). Using embedded fallback data.', error);
+                renderPublications(fallbackPublications);
             });
     </script>
 </body>

@@ -41,15 +41,19 @@ def fetch_publications():
             url = pub.get('pub_url', '#') # Link to the paper if available
             citation = pub.get('num_citations', 0)
             
+            # Extract venue if available (usually in 'citation', 'journal', or 'conference' within the bib dict)
+            venue = pub['bib'].get('citation', pub['bib'].get('journal', pub['bib'].get('conference', '')))
+            
             # Create a clean dictionary for our JSON
             pub_data = {
                 "title": title,
                 "year": year,
                 "url": url,
-                "citations": citation
+                "citations": citation,
+                "venue": venue
             }
             publications_list.append(pub_data)
-            print(f"Found: {title} ({year})")
+            print(f"Found: {title} ({year}) - Venue: {venue}")
 
         # Sort by year (newest first)
         publications_list.sort(key=lambda x: str(x['year']), reverse=True)
