@@ -3,30 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marco Pardini | AI & Cognitive Systems</title>
+    <title>Marco Pardini | AI & Cognitive Robotics</title>
     <link rel="icon" href="images/mp_icon.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- CORE VARIABLES & RESET --- */
         :root {
-            --bg-color: #0b0d17;
-            --card-bg: rgba(22, 27, 46, 0.7);
-            --accent: #00d4ff; /* Cyan for AI/Future feel */
-            --accent-gradient: linear-gradient(90deg, #00d4ff, #005bea);
-            --text-main: #e0e6ed;
-            --text-muted: #94a3b8;
-            --border: 1px solid rgba(255, 255, 255, 0.1);
+            --bg-color: #030712;
+            --card-bg: rgba(17, 24, 39, 0.6);
+            --accent: #00d4ff; 
+            --accent-purple: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: 1px solid rgba(255, 255, 255, 0.05);
+            --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
@@ -40,20 +42,20 @@
             height: 100%;
             top: 0;
             left: 0;
-            z-index: -1; /* Behind everything */
-            background-image: radial-gradient(circle at 50% 50%, #1a1f35 0%, #0b0d17 100%);
+            z-index: -1; 
+            background-image: radial-gradient(circle at 50% 0%, #111827 0%, #030712 80%);
         }
 
         /* --- LAYOUT UTILITIES --- */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             position: relative;
             z-index: 1;
         }
 
-        section { margin-bottom: 80px; }
+        section { margin-bottom: 100px; }
         
         a { text-decoration: none; color: var(--accent); transition: 0.3s; }
         a:hover { color: #fff; text-shadow: 0 0 10px var(--accent); }
@@ -64,18 +66,34 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 80px 0 40px;
+            padding: 80px 0 60px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .profile-img-container {
-            width: 230px; 
-            height: 230px; 
+            width: 220px; 
+            height: 220px; 
             border-radius: 50%;
             padding: 4px;
             background: var(--accent-gradient);
-            margin-bottom: 20px;
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            margin-bottom: 25px;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
             overflow: hidden; 
+            position: relative;
+        }
+
+        .profile-img-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 50%;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            pointer-events: none;
         }
 
         .profile-img {
@@ -83,94 +101,191 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--bg-color);
-            /* Adjust this if you want to move the face up/down */
+            border: 6px solid var(--bg-color);
             object-position: center; 
         }
 
-        .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 10px; }
-        .hero .role { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 25px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
+        .hero .highlight { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero .role { font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin-bottom: 30px; line-height: 1.8; font-weight: 300;}
         
-        .social-links { display: flex; gap: 20px; font-size: 1.5rem; }
+        .social-links { display: flex; gap: 25px; font-size: 1.8rem; }
         .social-links a { color: var(--text-muted); }
-        .social-links a:hover { color: var(--accent); transform: translateY(-3px); }
+        .social-links a:hover { color: var(--accent); transform: translateY(-5px); }
 
-        /* --- CARDS (Glassmorphism) --- */
+        /* --- CARDS (Premium Glassmorphism) --- */
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: var(--border);
-            border-radius: 16px;
-            padding: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
         
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
         }
 
         .section-title {
             display: flex;
             align-items: center;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 35px;
             color: #fff;
         }
-        .section-title i { margin-right: 15px; color: var(--accent); }
+        .section-title i { margin-right: 15px; color: var(--accent); font-size: 1.8rem; }
+        .section-subtitle {
+            font-size: 1.1rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6;
+        }
+
+        /* --- MEDIA GRIDS --- */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .media-grid-large {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        .media-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: var(--border);
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .media-item img, .media-item video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .media-caption {
+            padding: 15px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            text-align: center;
+            background: rgba(20, 20, 25, 0.8);
+            backdrop-filter: blur(5px);
+        }
 
         /* --- AFFILIATIONS --- */
         .affiliations-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
         }
 
         .affiliation-item {
             text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.3s;
         }
+        .affiliation-item:hover { background: rgba(255,255,255,0.05); }
 
-        .affiliation-item h4 { color: #fff; margin-bottom: 5px; }
-        .affiliation-item p { font-size: 0.9rem; color: var(--text-muted); }
-
-        /* --- RESEARCH AREAS --- */
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .research-item { position: relative; padding-left: 20px; }
-        .research-item::before {
-            content: ''; position: absolute; left: 0; top: 5px; bottom: 5px;
-            width: 3px; background: var(--accent-gradient); border-radius: 2px;
-        }
+        .affiliation-item h4 { color: #fff; margin-bottom: 8px; font-size: 1.2rem; }
+        .affiliation-item p { font-size: 0.95rem; color: var(--text-muted); }
 
         /* --- PROJECTS & PUBLICATIONS --- */
-        .project-list a {
-            display: block;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: space-between; align-items: center;
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
-        .project-list a:last-child { border-bottom: none; }
-        .project-list span { color: var(--text-main); font-weight: 500; }
-        .project-list i { font-size: 0.8rem; opacity: 0.5; }
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.3s;
+        }
+        .list-item:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(0, 212, 255, 0.2);
+            transform: translateX(5px);
+        }
+        .list-item span { color: var(--text-main); font-weight: 500; font-size: 1.1rem; }
+        .list-item i { font-size: 0.9rem; color: var(--text-muted); transition: 0.3s;}
+        .list-item:hover i { color: var(--accent); }
+
+        /* --- PUBLICATIONS & AWARDS GRID --- */
+        .pub-award-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .pub-award-layout { grid-template-columns: 1fr; }
+        }
+
+        .award-badge {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        .award-badge img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .award-badge h4 { color: #ffd700; margin-bottom: 5px; }
 
         /* --- EDUCATION --- */
-        .edu-item { margin-bottom: 20px; }
+        .edu-item { margin-bottom: 25px; padding-left: 20px; border-left: 2px solid var(--accent-purple); position: relative;}
+        .edu-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
         .edu-item:last-child { margin-bottom: 0; }
-        .edu-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
-        .edu-date { font-size: 0.85rem; color: var(--accent); font-weight: 600; background: rgba(0, 212, 255, 0.1); padding: 2px 8px; border-radius: 4px; }
-        .edu-details { font-size: 0.9rem; color: var(--text-muted); }
+        .edu-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; gap: 10px;}
+        .edu-header h4 { font-size: 1.2rem; color: #fff; }
+        .edu-date { font-size: 0.85rem; color: var(--accent); font-weight: 600; background: rgba(0, 212, 255, 0.1); padding: 4px 10px; border-radius: 20px; }
+        .edu-details { font-size: 1rem; color: var(--text-muted); }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .section-title { font-size: 1.5rem; }
-            .affiliations-grid { justify-content: center; } 
+            .hero h1 { font-size: 2.5rem; }
+            .section-title { font-size: 1.6rem; }
+            .card { padding: 25px; }
+            .hero .role { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -180,24 +295,26 @@
 
     <div class="container">
         
+        <!-- HERO SECTION -->
         <header class="hero">
             <div class="profile-img-container">
                 <img src="images/portrait.jpg" alt="Marco Pardini" class="profile-img">
             </div>
             <h1>Marco Pardini</h1>
             <p class="role">
-                PhD Student in Smart Industry @ UniPi<br>
-                Cognitive Architectures | Humanoid Robotics | Affective Computing
+                <strong class="highlight">PhD Student in Smart Industry @ UniPi</strong><br><br>
+                My research bridges the gap between <strong>Artificial Intelligence</strong> and <strong>Robotics</strong>, focusing on making humanoid robots hyper-realistic in real-time, with a specific emphasis on facial control. I leverage <strong>Unreal Engine</strong> for advanced simulations and <strong>biosignals</strong> to decode human emotional states. My ultimate goal is to embed this emotional awareness into cognitive architectures, enabling humans to interact seamlessly with robots that genuinely understand and respond to the emotional state of their interlocutors.
             </p>
             
             <div class="social-links">
-                <a href="https://github.com/ilmarcopardo" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://it.linkedin.com/in/marco-pardini-12a566236" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:marco.pardini00@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.instagram.com/ilmarcopardo/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/ilmarcopardo" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://it.linkedin.com/in/marco-pardini-12a566236" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:marco.pardini00@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.instagram.com/ilmarcopardo/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </header>
 
+        <!-- AFFILIATIONS -->
         <section>
             <div class="card">
                 <h3 class="section-title"><i class="fas fa-university"></i> Research Groups & Affiliations</h3>
@@ -218,30 +335,138 @@
             </div>
         </section>
 
+        <!-- ROBOTICS SHOWCASE -->
         <section>
-            <h3 class="section-title"><i class="fas fa-brain"></i> Research Areas</h3>
-            <div class="research-grid">
-                <div class="card research-item">
-                    <h4>Hyper-Realistic Control Interfaces</h4>
-                    <p class="edu-details" style="margin-top:10px;">
-                        Development of hyper-realistic control interfaces in the field of cognitive architectures. Work involves <b>Abel</b> (the humanoid robot of UniPi) and <b>MetaHuman</b> control systems using Unreal Engine.
-                    </p>
+            <div class="card">
+                <h3 class="section-title"><i class="fas fa-robot"></i> Cognitive Humanoid Robotics</h3>
+                <p class="section-subtitle">
+                    Working directly with advanced humanoid platforms, focusing on hyper-realistic control, collision avoidance, and facial retargeting in real-time to create believable interactions.
+                </p>
+                <div class="media-grid media-grid-large">
+                    <div class="media-item">
+                        <video autoplay loop muted playsinline>
+                            <source src="images/robotics/abel_moving.mp4" type="video/mp4">
+                        </video>
+                        <div class="media-caption"><strong>Abel</strong>: Real-time collision avoidance with MoveIt</div>
+                    </div>
+                    <div class="media-item">
+                        <video autoplay loop muted playsinline>
+                            <source src="images/robotics/seth_facial_retargeting.mp4" type="video/mp4">
+                        </video>
+                        <div class="media-caption"><strong>Seth</strong>: Real-time facial retargeting during conversation</div>
+                    </div>
                 </div>
-                <div class="card research-item">
-                    <h4>Cognitive Architectures</h4>
-                    <p class="edu-details" style="margin-top:10px;">
-                        Development of next-generation cognitive architectures driven by Large Language Models to enhance reasoning and adaptability in robotic systems.
-                    </p>
-                </div>
-                <div class="card research-item">
-                    <h4>Affective Computing</h4>
-                    <p class="edu-details" style="margin-top:10px;">
-                        Bridging the gap between humans and machines by enabling systems to recognize, interpret, and simulate human affects and emotions.
-                    </p>
+                <div class="media-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="media-item">
+                        <img src="images/robotics/abel_and_seth.jpg" alt="Abel and Seth">
+                        <div class="media-caption">Abel & Seth</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="images/robotics/Abel.jpg" alt="Abel Close up">
+                        <div class="media-caption">Abel Close-up</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="images/robotics/seth.jpg" alt="Seth Close up">
+                        <div class="media-caption">Seth Close-up</div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- AFFECTIVE COMPUTING & SAD -->
+        <section>
+            <div class="card">
+                <h3 class="section-title"><i class="fas fa-heartbeat"></i> Affective Computing & Bio-Signals</h3>
+                <p class="section-subtitle">
+                    The <strong>BRAVE Project</strong> aims to support individuals with Social Anxiety Disorder (SAD). We capture biosignals (ECG, EDA) in immersive VR scenarios to extract features and detect anxiety levels in real-time, bridging the gap toward emotionally-aware cognitive architectures.
+                </p>
+                <div class="media-grid media-grid-large">
+                    <div class="media-item">
+                        <img src="images/sad/brave_exp.png" alt="VR Scenario Setup">
+                        <div class="media-caption">Immersive VR scenario with biometric sensor array</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="images/sad/brave_realtime.jpg" alt="Realtime Data Interface">
+                        <div class="media-caption">Real-time interface: ECG & EDA to anxiety features</div>
+                    </div>
+                </div>
+                <div class="media-grid" style="grid-template-columns: 1fr;">
+                    <div class="media-item">
+                        <video autoplay loop muted playsinline>
+                            <source src="images/sad/brave_video_cut.mp4" type="video/mp4">
+                        </video>
+                        <div class="media-caption">Real-time anxiety level detection during the VR experience</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNREAL ENGINE & METAHUMANS -->
+        <section>
+            <div class="card">
+                <h3 class="section-title"><i class="fas fa-cube"></i> Unreal Engine & MetaHumans</h3>
+                <p class="section-subtitle">
+                    Utilizing Unreal Engine to craft ultra-realistic MetaHumans for simulation, interactive Holobox displays, and digital twin recreations from raw point cloud data.
+                </p>
+                
+                <h4 style="margin: 30px 0 15px; color: #fff; font-size: 1.3rem;">Holobox Integration (AOI & ADA)</h4>
+                <div class="media-grid">
+                    <div class="media-item">
+                        <img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA">
+                        <div class="media-caption">AOI & ADA Interactive Avatars</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="images/ue/aoi_cams.jpg" alt="AOI Cameras">
+                        <div class="media-caption">Multi-camera setup for Holobox rendering</div>
+                    </div>
+                </div>
+                <div class="media-grid media-grid-large">
+                    <div class="media-item">
+                        <video autoplay loop muted playsinline>
+                            <source src="images/ue/aoi_cut.mp4" type="video/mp4">
+                        </video>
+                        <div class="media-caption">3-angle split render required for holographic illusion</div>
+                    </div>
+                    <div class="media-item">
+                        <video autoplay loop muted playsinline>
+                            <source src="images/ue/aoi_holobox.mp4" type="video/mp4">
+                        </video>
+                        <div class="media-caption">The final result projected inside the physical Holobox</div>
+                    </div>
+                </div>
+
+                <h4 style="margin: 40px 0 15px; color: #fff; font-size: 1.3rem;">Digital Recreations: Mazzei & Jefferson</h4>
+                <p class="section-subtitle" style="font-size: 0.95rem;">
+                    Extracting meshes from point clouds directly in Unreal Engine to generate, animate, and simulate historically significant MetaHumans.
+                </p>
+                <div class="media-grid">
+                    <div class="media-item">
+                        <img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static Meshes">
+                        <div class="media-caption">Point clouds converted to static meshes</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="images/ue/jefferson_hair.jpg" alt="Hair Grooming">
+                        <div class="media-caption">Detailed hair grooming in UE</div>
+                    </div>
+                </div>
+                <div class="media-grid media-grid-large">
+                    <div class="media-item">
+                        <video autoplay loop muted playsinline>
+                            <source src="images/ue/mazzei_cut.mp4" type="video/mp4">
+                        </video>
+                        <div class="media-caption">Philip Mazzei: Fully animated MetaHuman</div>
+                    </div>
+                    <div class="media-item">
+                        <video autoplay loop muted playsinline>
+                            <source src="images/ue/jeff_cut.mp4" type="video/mp4">
+                        </video>
+                        <div class="media-caption">Thomas Jefferson: Fully animated MetaHuman</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
         <section>
             <div class="card">
                 <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h3>
@@ -253,7 +478,6 @@
                     </div>
                     <p class="edu-details">University of Pisa</p>
                 </div>
-                <hr style="border-color: rgba(255,255,255,0.05); margin: 15px 0;">
                 
                 <div class="edu-item">
                     <div class="edu-header">
@@ -261,9 +485,8 @@
                         <span class="edu-date">2022 - 2024</span>
                     </div>
                     <p class="edu-details">University of Pisa | <b>110/110 cum laude</b></p>
-                    <p class="edu-details"><i>Thesis: Service-Oriented Cognitive System for Social Robotics orchestrated by LLMs</i></p>
+                    <p class="edu-details" style="margin-top: 5px;"><i>Thesis: Service-Oriented Cognitive System for Social Robotics orchestrated by LLMs</i></p>
                 </div>
-                <hr style="border-color: rgba(255,255,255,0.05); margin: 15px 0;">
 
                 <div class="edu-item">
                     <div class="edu-header">
@@ -275,35 +498,58 @@
             </div>
         </section>
 
+        <!-- PUBLICATIONS & AWARDS (COMBINED) -->
         <section id="publications">
-            <div class="card">
-                <h3 class="section-title"><i class="fas fa-book-open"></i> Publications</h3>
-                <p style="color:var(--text-muted); font-style: italic; margin-bottom: 20px;">
-                    From Google Scholar
-                </p>
-                <div id="scholar-feed">
-                    <div class="project-list">
-                         <a href="#"><span>Waiting for fetch...</span> <i class="fas fa-sync fa-spin"></i></a>
+            <div class="pub-award-layout">
+                <div class="card">
+                    <h3 class="section-title"><i class="fas fa-book-open"></i> Publications</h3>
+                    <p style="color:var(--text-muted); font-style: italic; margin-bottom: 20px;">
+                        From Google Scholar
+                    </p>
+                    <div id="scholar-feed" class="list-container">
+                        <div class="list-item">
+                             <span>Waiting for fetch...</span> <i class="fas fa-sync fa-spin"></i>
+                        </div>
                     </div>
+                </div>
+                
+                <div class="card award-badge">
+                    <h4><i class="fas fa-award"></i> Featured Award</h4>
+                    <img src="images/best_graph_abstract.jpg" alt="Best Graphical Abstract">
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        <strong>IEEE MetroXraine 2025</strong><br>
+                        Best Graphical Abstract
+                    </p>
                 </div>
             </div>
         </section>
 
+        <!-- SELECTED PROJECTS -->
         <section>
             <div class="card">
                 <h3 class="section-title"><i class="fas fa-code-branch"></i> Selected Projects</h3>
-                <div class="project-list">
-                    <a href="https://github.com/ilmarcopardo/LSMSD-Project"><span>Board Games Web App</span> <i class="fas fa-external-link-alt"></i></a>
-                    <a href="https://github.com/ilmarcopardo/ActivityRecognizer"><span>Activity Recognizer App</span> <i class="fas fa-external-link-alt"></i></a>
-                    <a href="https://github.com/ilmarcopardo/MIRCVProject"><span>Search Engine for MsMarco</span> <i class="fas fa-external-link-alt"></i></a>
-                    <a href="https://github.com/ilmarcopardo/smart_greenhouse"><span>Smart Greenhouse Monitoring</span> <i class="fas fa-external-link-alt"></i></a>
-                    <a href="https://github.com/ilmarcopardo/reinforcement_learning"><span>Actor-Critic for CartPole-v1</span> <i class="fas fa-external-link-alt"></i></a>
+                <div class="list-container">
+                    <a href="https://github.com/ilmarcopardo/LSMSD-Project" class="list-item">
+                        <span>Board Games Web App</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://github.com/ilmarcopardo/ActivityRecognizer" class="list-item">
+                        <span>Activity Recognizer App</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://github.com/ilmarcopardo/MIRCVProject" class="list-item">
+                        <span>Search Engine for MsMarco</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://github.com/ilmarcopardo/smart_greenhouse" class="list-item">
+                        <span>Smart Greenhouse Monitoring</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://github.com/ilmarcopardo/reinforcement_learning" class="list-item">
+                        <span>Actor-Critic for CartPole-v1</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <footer style="text-align: center; color: var(--text-muted); padding-bottom: 40px; font-size: 0.8rem;">
-            <p>&copy; 2024 Marco Pardini.</p>
+        <footer style="text-align: center; color: var(--text-muted); padding-bottom: 40px; font-size: 0.9rem;">
+            <p>&copy; 2024 Marco Pardini. Crafted with AI & Human Creativity.</p>
         </footer>
 
     </div>
@@ -313,23 +559,24 @@
         /* --- PARTICLES.JS CONFIGURATION --- */
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#ffffff" },
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": ["#00d4ff", "#8b5cf6", "#ffffff"] },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": false },
+                "opacity": { "value": 0.4, "random": true },
                 "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.4, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
             },
             "interactivity": {
                 "detect_on": "canvas",
                 "events": {
-                    "onhover": { "enable": true, "mode": "grab" }, /* The "Mouse Grab" effect */
-                    "onclick": { "enable": true, "mode": "push" },
+                    "onhover": { "enable": true, "mode": "bubble" },
+                    "onclick": { "enable": true, "mode": "repulse" },
                     "resize": true
                 },
                 "modes": {
-                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } }
+                    "bubble": { "distance": 200, "size": 6, "duration": 2, "opacity": 0.8, "speed": 3 },
+                    "repulse": { "distance": 200, "duration": 0.4 }
                 }
             },
             "retina_detect": true
@@ -340,37 +587,35 @@
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('scholar-feed');
-                container.innerHTML = ''; // Clear the "Waiting..." text
+                container.innerHTML = ''; 
 
                 if (data.length === 0) {
-                    container.innerHTML = '<p>No publications found yet.</p>';
+                    container.innerHTML = '<div class="list-item"><span>No publications found yet.</span></div>';
                     return;
                 }
 
-                // Loop through each publication and create the HTML
                 data.forEach(pub => {
-                    const div = document.createElement('div');
-                    div.className = 'project-list';
+                    const href = pub.url && pub.url !== '#' ? pub.url : 'https://scholar.google.com/citations?user=1XGhMwgAAAAJ';
                     
-                    // IMPORTANT: Replace 'YOUR_SCHOLAR_ID_HERE' below with your actual ID as a fallback
-                    const href = pub.url && pub.url !== '#' ? pub.url : 'https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID_HERE';
+                    const a = document.createElement('a');
+                    a.href = href;
+                    a.target = '_blank';
+                    a.className = 'list-item';
                     
-                    div.innerHTML = `
-                        <a href="${href}" target="_blank">
-                            <span>${pub.title}</span>
-                            <div style="display:flex; align-items:center; gap:10px;">
-                                <span style="font-size:0.8rem; color:var(--text-muted);">${pub.year}</span>
-                                <i class="fas fa-external-link-alt"></i>
-                            </div>
-                        </a>
+                    a.innerHTML = `
+                        <span>${pub.title}</span>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span style="font-size:0.85rem; color:var(--text-muted);">${pub.year}</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
                     `;
-                    container.appendChild(div);
+                    container.appendChild(a);
                 });
             })
             .catch(error => {
                 console.error('Error loading publications:', error);
                 document.getElementById('scholar-feed').innerHTML = 
-                    '<div class="project-list"><a href="https://scholar.google.com/citations?hl=it&user=1XGhMwgAAAAJ"><span>Check my Google Scholar Profile</span> <i class="fas fa-external-link-alt"></i></a></div>';
+                    '<a href="https://scholar.google.com/citations?hl=it&user=1XGhMwgAAAAJ" target="_blank" class="list-item"><span>Check my Google Scholar Profile</span> <i class="fas fa-external-link-alt"></i></a>';
             });
     </script>
 </body>
