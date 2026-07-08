@@ -1,5 +1,17 @@
 [
     {
+        "title": "Multimodal Classification of Social Anxiety Using Continuous Self-Rating and Physiological Data in Virtual Reality",
+        "year": "2026",
+        "url": "#",
+        "citations": 0
+    },
+    {
+        "title": "Deep Learning-Based Classification of Social Anxiety Disorder Using Continuous Self-Reported Anxiety in Virtual Reality",
+        "year": "2025",
+        "url": "#",
+        "citations": 2
+    },
+    {
         "title": "Development of a human-inspired long-term memory for interactive conversational agents",
         "year": "2025",
         "url": "#",
@@ -7,12 +19,6 @@
     },
     {
         "title": "A comparative evaluation of function-calling llms in a cognitive architecture",
-        "year": "2025",
-        "url": "#",
-        "citations": 1
-    },
-    {
-        "title": "Deep Learning-Based Classification of Social Anxiety Disorder Using Continuous Self-Reported Anxiety in Virtual Reality",
         "year": "2025",
         "url": "#",
         "citations": 1

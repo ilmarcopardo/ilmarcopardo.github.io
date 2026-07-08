@@ -1,29 +1,41 @@
-# File: scholar_scraper.py
+# File: python_scraper.py
 import json
+import os
+import time
+import random
 from scholarly import scholarly
 
 # --- CONFIGURATION ---
 AUTHOR_ID = '1XGhMwgAAAAJ' # <--- PUT YOUR ID HERE
 OUTPUT_FILE = 'publications.json'
+MAX_RETRIES = 5
+
+def fetch_publications_with_retries(author_id):
+    last_exc = None
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            author = scholarly.search_author_id(author_id)
+            print("Filling author data (this might take a moment)...")
+            author = scholarly.fill(author, sections=['publications'])
+            return author.get('publications', [])
+        except Exception as e:
+            last_exc = e
+            sleep_s = min(60, (2 ** attempt) + random.uniform(0.5, 2.5))
+            print(f"[Attempt {attempt}/{MAX_RETRIES}] Scholar fetch failed: {e}")
+            if attempt < MAX_RETRIES:
+                time.sleep(sleep_s)
+    raise last_exc
 
 def fetch_publications():
     print(f"Fetching publications for author ID: {AUTHOR_ID}")
     
     try:
-        # 1. Search for the author
-        author = scholarly.search_author_id(AUTHOR_ID)
-        
-        # 2. Fill the author object with publication data
-        print("Filling author data (this might take a moment)...")
-        author = scholarly.fill(author, sections=['publications'])
+        pubs = fetch_publications_with_retries(AUTHOR_ID)
         
         publications_list = []
         
-        # 3. Extract relevant data from each publication
-        for pub in author['publications']:
-            # We fetch the 'bib' section to get the year and title accurately
-            # Note: scholarly.fill(pub) would get more details but is slower/riskier for blocking
-            
+        # Extract relevant data from each publication
+        for pub in pubs:
             title = pub['bib'].get('title', 'No Title')
             year = pub['bib'].get('pub_year', 'N/A')
             url = pub.get('pub_url', '#') # Link to the paper if available
@@ -39,19 +51,24 @@ def fetch_publications():
             publications_list.append(pub_data)
             print(f"Found: {title} ({year})")
 
-        # 4. Sort by year (newest first)
-        publications_list.sort(key=lambda x: x['year'], reverse=True)
+        # Sort by year (newest first)
+        publications_list.sort(key=lambda x: str(x['year']), reverse=True)
 
-        # 5. Save to JSON
+        # Save to JSON
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             json.dump(publications_list, f, indent=4, ensure_ascii=False)
             
         print(f"Successfully saved {len(publications_list)} publications to {OUTPUT_FILE}")
 
     except Exception as e:
-        print(f"Error occurred: {e}")
+        print(f"Warning: Could not fetch from Google Scholar: {e}")
+        if os.path.exists(OUTPUT_FILE):
+            print("Keeping existing publications.json and exiting without failing workflow.")
+            # Exit 0 so scheduled job doesn't fail due to transient Scholar issues
+            return
+        # If no fallback file exists, fail clearly
         import sys
-        sys.exit(1)
+        sys.exit("No existing publications.json available; failing run.")
 
 if __name__ == "__main__":
     fetch_publications()
