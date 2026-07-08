@@ -1,0 +1,25 @@
+and now, i want you to redo the site.
+i've inserted many videos and images. now i'll tell you briefly what it's all about.
+first, i want you to change my bio. my research direction is going to be trying to make humanoid robots
+realistic, in real time. specifically on the face. so i'm in between AI and robotics, and i want to use AI to
+have robots that are controlled in a hyper realistic manner. also i'm interested in unreal engine for simulations
+and stuff, and in bio signals to understand the emotional state of people, to later introduce it into cognitive
+robotics and to make people interact with a robot that is aware of the emotional state of the interlocutor.
+now, in images i tried to put things inside folders.
+there are both videos and images.
+robotics: there are 3 images of the robots i'm working with: abel and seth. and there are 2 videos: one where
+abel moves his arms through moveit, avoiding collision, and the other were seth performs facial retargeting of
+people talking (work in progress).
+in sad there is social anxiety disorder: brave exp is an image showing me with sensors, and what the VR scenario
+is about, then there is brave realtime showing an interface where signals are taken from sensors (ecg and eda)
+converted in features, and anxiety levels are detected in realtime. in brave video cut there's a video showing
+that.
+in UE there are many images: in UE i do focus mainly (basically only) on metahumans. there are aoi and ada
+looking around, then aoi cams, aoi cut and aoi holobox that should be shown together, since in here i used them
+in a holobox that required an image redered 3 times at different angles, to make it show correctly on the holobox
+itself, and then there is a recent project i've been involved in: taking mazzei and jefferson point clouds,
+extracting the meshes in ue, creating the 2 metahumans and animating them. there is jefferson and mazzei static
+meshes, then the in work of mazzei's hair, and then the 2 videos of the result, mazzei and jeff cut.
+
+i want you to organize all this material, to modify my site and to make it better. i've also inserted an image
+best_graph_abstract, because in IEEE Metroxraine 2025 conference i've won an award for best graphical abstract.
