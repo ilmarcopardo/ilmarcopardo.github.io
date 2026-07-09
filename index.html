@@ -338,7 +338,7 @@
                     </div>
                 </div>
                 <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
-                    <p style="color: var(--text-muted); line-height: 1.8;">
+                    <p style="color: var(--text-muted); line-height: 1.8; font-size: 1.05rem; text-align: center;">
                         My PhD research sits at the interdisciplinary crossroads of Computer Engineering and Biomedical Engineering, jointly supervised by <a href="https://docenti.ing.unipi.it/m.cimino/" target="_blank" style="color: var(--accent); text-decoration: none;">Prof. Mario Cimino</a> and <a href="https://www.centropiaggio.unipi.it/~greco" target="_blank" style="color: var(--accent); text-decoration: none;">Prof. Alberto Greco</a>. Prof. Cimino leads research in deep learning, explainable AI, computer vision, and cognitive architectures. Conversely, Prof. Greco is a leading expert in electrodermal signal analysis and affective computing. Operating precisely at the intersection of these two domains, my specific focus is applying advanced deep learning and computer vision algorithms directly to robotic platforms—bridging the gap between cognitive artificial intelligence and physiological affective response.
                     </p>
                 </div>
@@ -405,112 +405,84 @@
             </div>
         </section>
 
-                <!-- AFFECTIVE COMPUTING & SAD -->
+        <!-- SIDE QUESTS: PARALLEL RESEARCH -->
         <section>
             <div class="card">
-                <h3 class="section-title"><i class="fas fa-heartbeat"></i> Affective Computing & Bio-Signals</h3>
+                <h3 class="section-title"><i class="fas fa-project-diagram"></i> Interdisciplinary Research & Simulation</h3>
                 <p class="section-subtitle">
-                    The <strong>BRAVE Project</strong> aims to support individuals with Social Anxiety Disorder (SAD). We capture biosignals (ECG, EDA) in immersive VR scenarios to extract features and detect anxiety levels in real-time, bridging the gap toward emotionally-aware cognitive architectures.
+                    Complementing my work in humanoid robotics, my research extends into affective computing and high-fidelity virtual environments, driving the development of a comprehensive ecosystem for human-machine interaction.
                 </p>
                 
-                <div class="split-layout reverse">
-                    <!-- MEDIA RIGHT -->
-                    <div class="split-media" style="display: flex; flex-direction: column; gap: 15px; max-width: 650px; margin: auto;">
-                        <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; align-items: stretch;">
-                            <div class="media-item" style="flex: 2.21; margin: auto 0;">
-                                <img src="images/sad/brave_exp.png" alt="VR Scenario Setup" style="width: 100%; height: auto; object-fit: contain;">
-                                <div class="media-caption">Immersive VR scenario with biometric sensor array</div>
-                            </div>
-                            <div class="media-item" style="flex: 1.78; margin: auto 0;">
-                                <img src="images/sad/brave_realtime.jpg" alt="Realtime Data Interface" style="width: 100%; height: auto; object-fit: contain;">
-                                <div class="media-caption">Real-time interface: ECG & EDA to anxiety features</div>
-                            </div>
-                        </div>
-                        <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; justify-content: center;">
-                            <div class="media-item" style="flex: 1.38; max-width: 80%; margin: auto;">
-                                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
-                                    <source src="images/sad/brave_video_cut.mp4" type="video/mp4">
-                                </video>
-                                <div class="media-caption">Real-time anxiety level detection during the VR experience. This is fast forwarded by 8 times, to make it visible.</div>
-                            </div>
-                        </div>
-                    </div>
+                <div style="display: grid; grid-template-columns: 4fr 6fr; gap: 40px; margin-top: 30px;">
                     
-                    <!-- TEXT LEFT -->
-                    <div class="split-text card">
-                        <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Measuring Emotional Responses</h4>
-                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px;">
-                            In our initial work on the continuous assessment of Social Anxiety Disorder (SAD) in Virtual Reality, we focused on <strong>multimodal classification</strong>. By integrating continuous self-ratings of anxiety with objective physiological data (ECG and EDA), we developed a Late Fusion Transformer framework that successfully classified participants into high and low anxiety groups, achieving a robust F1-score of 0.853 and an overall accuracy of 82.5%.
-                        </p>
-                        <p style="color: var(--text-muted); line-height: 1.8;">
-                            Building upon that success, we are now tackling the significantly more complex challenge of <strong>multivariate continuous regression</strong>. As shown in the real-time interface videos, the goal is to continuously map the dynamic, in-the-moment physiological signals directly to the user's fluctuating emotional state, creating a temporally sensitive, objective metric for psychopathology without relying on static questionnaires.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    <!-- AFFECTIVE COMPUTING & SAD -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <h4 style="color: #fff; font-size: 1.3rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;"><i class="fas fa-heartbeat" style="color: var(--accent); margin-right: 10px;"></i> Affective Computing</h4>
+                        
+                        <div class="split-media" style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+                            <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; align-items: stretch;">
+                                <div class="media-item" style="flex: 2.21; margin: auto 0;">
+                                    <img src="images/sad/brave_exp.png" alt="VR Scenario Setup" style="width: 100%; height: auto; object-fit: contain;">
+                                </div>
+                                <div class="media-item" style="flex: 1.78; margin: auto 0;">
+                                    <img src="images/sad/brave_realtime.jpg" alt="Realtime Data Interface" style="width: 100%; height: auto; object-fit: contain;">
+                                </div>
+                            </div>
+                            
+                            <!-- New PDF Diagram Row -->
+                            <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; justify-content: center;">
+                                <div class="media-item" style="flex: 1; width: 100%; background: #fff; padding: 10px;">
+                                    <img src="images/sad/transformer_encoder_architecture.png" alt="Late Fusion Transformer Architecture" style="width: 100%; height: auto; object-fit: contain;">
+                                    <div class="media-caption" style="background: transparent; color: #333; padding-bottom: 0;">Late Fusion Transformer Architecture</div>
+                                </div>
+                            </div>
 
-                <!-- UNREAL ENGINE & METAHUMANS -->
-        <section>
-            <div class="card">
-                <h3 class="section-title"><i class="fas fa-cube"></i> Unreal Engine & MetaHumans</h3>
-                <p class="section-subtitle">
-                    Utilizing Unreal Engine to craft ultra-realistic MetaHumans for simulation, interactive Holobox displays, and digital twin recreations from raw point cloud data.
-                </p>
-                
-                <div class="split-layout">
-                    <!-- MEDIA LEFT (70%) -->
-                    <div class="split-media" style="flex: 2.33; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%;">
-                        <!-- Row 1 -->
-                        <div class="media-item" style="margin: 0;">
-                            <img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
-                        </div>
-                        <div class="media-item" style="margin: 0;">
-                            <img src="images/ue/aoi_cams.jpg" alt="AOI Cameras" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
+                            <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; justify-content: center;">
+                                <div class="media-item" style="flex: 1.38; width: 100%;">
+                                    <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
+                                        <source src="images/sad/brave_video_cut.mp4" type="video/mp4">
+                                    </video>
+                                    <div class="media-caption">Real-time anxiety level detection during the VR experience. This is fast forwarded by 8 times.</div>
+                                </div>
+                            </div>
                         </div>
                         
-                        <!-- Holobox Video (Spans Row 1 & 2) -->
-                        <div class="media-item" style="margin: 0; grid-row: span 2;">
-                            <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; border: var(--border);">
-                                <source src="images/ue/aoi_holobox.mp4" type="video/mp4">
-                            </video>
-                        </div>
-
-                        <!-- Row 2 -->
-                        <div class="media-item" style="margin: 0;">
-                            <video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
-                                <source src="images/ue/aoi_cut.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="media-item" style="margin: 0;">
-                            <img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static Meshes" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
-                        </div>
-
-                        <!-- Row 3 -->
-                        <div class="media-item" style="margin: 0;">
-                            <video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
-                                <source src="images/ue/mazzei_cut.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="media-item" style="margin: 0;">
-                            <img src="images/ue/jefferson_hair.jpg" alt="Hair Grooming" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
-                        </div>
-                        <div class="media-item" style="margin: 0;">
-                            <video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
-                                <source src="images/ue/jeff_cut.mp4" type="video/mp4">
-                            </video>
+                        <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+                            <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px; font-size: 0.95rem;">
+                                In our initial work on continuous assessment of Social Anxiety Disorder (SAD) in Virtual Reality, we focused on <strong>multimodal classification</strong>. By integrating continuous self-ratings with objective physiological data (ECG/EDA), our Late Fusion Transformer framework successfully classified high and low anxiety groups, achieving an F1-score of 0.853 and 82.5% accuracy.
+                            </p>
+                            <p style="color: var(--text-muted); line-height: 1.8; font-size: 0.95rem;">
+                                We are now tackling the significantly more complex challenge of <strong>multivariate continuous regression</strong> to map dynamic, in-the-moment physiological signals directly to the user's fluctuating emotional state.
+                            </p>
                         </div>
                     </div>
-                    
-                    <!-- TEXT RIGHT (30%) -->
-                    <div class="split-text card" style="flex: 1;">
-                        <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Digital Recreations & Interactive Holograms</h4>
-                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px;">
-                            The process of reviving historical figures begins with high-density point clouds, which are meticulously converted into workable static meshes directly within Unreal Engine. Advanced grooming tools are then employed to recreate fine details like hair and eyebrows, followed by rigging these intricate models to the MetaHuman framework for full body and facial animations.
-                        </p>
-                        <p style="color: var(--text-muted); line-height: 1.8;">
-                            These digital avatars—whether historical recreations like Mazzei and Jefferson, or interactive avatars like AOI and ADA—can be projected into physical Holoboxes. Displaying MetaHumans holographically requires a complex multi-camera setup within Unreal Engine to render specific angles simultaneously, constructing a seamless, real-time 3D illusion that can respond to audience inputs with minimal latency.
-                        </p>
+
+                    <!-- UNREAL ENGINE & METAHUMANS -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <h4 style="color: #fff; font-size: 1.3rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;"><i class="fas fa-cube" style="color: var(--accent); margin-right: 10px;"></i> Unreal Engine & MetaHumans</h4>
+                        
+                        <div class="split-media" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%;">
+                            <!-- Row 1 -->
+                            <div class="media-item" style="margin: 0;"><img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"></div>
+                            <div class="media-item" style="margin: 0;"><img src="images/ue/aoi_cams.jpg" alt="AOI Cameras" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"></div>
+                            <div class="media-item" style="margin: 0; grid-row: span 2;"><video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; border: var(--border);"><source src="images/ue/aoi_holobox.mp4" type="video/mp4"></video></div>
+                            <!-- Row 2 -->
+                            <div class="media-item" style="margin: 0;"><video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"><source src="images/ue/aoi_cut.mp4" type="video/mp4"></video></div>
+                            <div class="media-item" style="margin: 0;"><img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static Meshes" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"></div>
+                            <!-- Row 3 -->
+                            <div class="media-item" style="margin: 0;"><video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"><source src="images/ue/mazzei_cut.mp4" type="video/mp4"></video></div>
+                            <div class="media-item" style="margin: 0;"><img src="images/ue/jefferson_hair.jpg" alt="Hair Grooming" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"></div>
+                            <div class="media-item" style="margin: 0;"><video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"><source src="images/ue/jeff_cut.mp4" type="video/mp4"></video></div>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+                            <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px; font-size: 0.95rem;">
+                                The process of reviving historical figures begins with high-density point clouds, meticulously converted into workable static meshes directly within Unreal Engine. Advanced grooming tools recreate fine details, followed by rigging intricate models to the MetaHuman framework.
+                            </p>
+                            <p style="color: var(--text-muted); line-height: 1.8; font-size: 0.95rem;">
+                                These digital avatars can be projected into physical Holoboxes. Displaying MetaHumans holographically requires a complex multi-camera setup within Unreal Engine to render specific angles simultaneously, constructing a seamless 3D illusion.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
