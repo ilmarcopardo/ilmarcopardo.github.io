@@ -386,11 +386,14 @@
                     <!-- TEXT RIGHT -->
                     <div class="split-text card">
                         <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Bringing Humanoids to Life</h4>
-                        <p class="placeholder-text">
-                            [Placeholder text] In this section, we explore the intricate process of mapping human facial expressions directly onto humanoid platforms like Abel and Seth in real-time. This involves extracting nuanced facial landmarks and translating them into actuator commands that preserve the emotional intent of the user.
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px;">
+                            <strong>Abel</strong> is a new generation hyper-realistic humanoid robot, conceived as a research platform for social interaction, emotion modeling, and embodied intelligence. Resembling an 11–12 year old boy, Abel is a unique collaboration between the University of Pisa and Gustav Hoegen (Biomimic Studio, London). Physically, Abel comprises a head and upper torso driven by 42 high-end servo motors (Futaba, MKS, Dynamixel). The head alone houses 21 motors dedicated to facial expressions, gaze, and speech simulation, allowing Abel to express a wide spectrum of human emotions. The robot is also equipped with an integrated torso camera, binaural microphones to emulate human acoustic perception, and an internal speaker.
                         </p>
-                        <p class="placeholder-text">
-                            [Placeholder text] Additionally, real-time collision avoidance is a critical component for safe human-robot interaction. By utilizing frameworks such as MoveIt, the robots are capable of dynamically replanning their trajectories to avoid obstacles and moving humans, ensuring both safety and fluid motion during tasks.
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px;">
+                            <strong>Seth</strong>, born from the same collaboration, relies exclusively on an array of 13 Dynamixel servo motors. These grant extremely precise, sub-millimeter control over its intricate facial movements.
+                        </p>
+                        <p style="color: var(--text-muted); line-height: 1.8;">
+                            My primary objective within this domain is absolute control over these complex mechatronic systems. I began by entirely rewriting Abel's control and movement architecture from scratch. Now, leveraging Seth's extreme mechanical precision, I am utilizing Deep Learning to perform real-time, high-fidelity facial retargeting, pushing the boundaries of what is possible in human-robot affective interaction.
                         </p>
                     </div>
                 </div>
@@ -431,11 +434,11 @@
                     <!-- TEXT LEFT -->
                     <div class="split-text card">
                         <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Measuring Emotional Responses</h4>
-                        <p class="placeholder-text">
-                            [Placeholder text] By integrating electrocardiography (ECG) and electrodermal activity (EDA) sensors, we can reliably monitor physiological changes that correspond to stress and anxiety in real-time. This continuous stream of biometric data is analyzed to provide immediate feedback on the patient's emotional state.
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px;">
+                            In our initial work on the continuous assessment of Social Anxiety Disorder (SAD) in Virtual Reality, we focused on <strong>multimodal classification</strong>. By integrating continuous self-ratings of anxiety with objective physiological data (ECG and EDA), we developed a Late Fusion Transformer framework that successfully classified participants into high and low anxiety groups, achieving a robust F1-score of 0.853 and an overall accuracy of 82.5%.
                         </p>
-                        <p class="placeholder-text">
-                            [Placeholder text] The immersive Virtual Reality environments are carefully designed to simulate social situations that might trigger anxiety. This safe, controlled exposure allows researchers to gather highly accurate data and eventually adapt the virtual scenario dynamically based on the user's detected stress levels.
+                        <p style="color: var(--text-muted); line-height: 1.8;">
+                            Building upon that success, we are now tackling the significantly more complex challenge of <strong>multivariate continuous regression</strong>. As shown in the real-time interface videos, the goal is to continuously map the dynamic, in-the-moment physiological signals directly to the user's fluctuating emotional state, creating a temporally sensitive, objective metric for psychopathology without relying on static questionnaires.
                         </p>
                     </div>
                 </div>
@@ -451,91 +454,57 @@
                 </p>
                 
                 <div class="split-layout">
-                    <!-- MEDIA LEFT -->
-                    <div class="split-media" style="display: flex; flex-direction: column; gap: 15px; max-width: 650px; margin: auto;">
-                        <!-- Upper Row: 2 Images -->
-                        <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; align-items: stretch; width: 100%;">
-                            <div class="media-item" style="flex: 1.95; margin: auto 0;">
-                                <img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA" style="width: 100%; height: auto; object-fit: contain;">
-                                <div class="media-caption">AOI & ADA Interactive Avatars</div>
-                            </div>
-                            <div class="media-item" style="flex: 1.40; margin: auto 0;">
-                                <img src="images/ue/aoi_cams.jpg" alt="AOI Cameras" style="width: 100%; height: auto; object-fit: contain;">
-                                <div class="media-caption">Multi-camera setup for Holobox rendering</div>
-                            </div>
+                    <!-- MEDIA LEFT (70%) -->
+                    <div class="split-media" style="flex: 2.33; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%;">
+                        <!-- Row 1 -->
+                        <div class="media-item" style="margin: 0;">
+                            <img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
                         </div>
-                        <!-- Lower Row: 2 Videos -->
-                        <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; align-items: stretch; width: 100%;">
-                            <!-- AOI Triple Video -->
-                            <div class="media-item" style="flex: 2.01; margin: auto 0;">
-                                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
-                                    <source src="images/ue/aoi_cut.mp4" type="video/mp4">
-                                </video>
-                                <div class="media-caption">3-angle split render required for holographic illusion</div>
-                            </div>
-                            <!-- Holobox Video (Vertical) -->
-                            <div class="media-item" style="flex: 1.00; margin: auto 0; background: transparent; border: none;">
-                                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
-                                    <source src="images/ue/aoi_holobox.mp4" type="video/mp4">
-                                </video>
-                                <div class="media-caption">The final result projected inside the physical Holobox</div>
-                            </div>
+                        <div class="media-item" style="margin: 0;">
+                            <img src="images/ue/aoi_cams.jpg" alt="AOI Cameras" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
+                        </div>
+                        
+                        <!-- Holobox Video (Spans Row 1 & 2) -->
+                        <div class="media-item" style="margin: 0; grid-row: span 2;">
+                            <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; border: var(--border);">
+                                <source src="images/ue/aoi_holobox.mp4" type="video/mp4">
+                            </video>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="media-item" style="margin: 0;">
+                            <video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
+                                <source src="images/ue/aoi_cut.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="media-item" style="margin: 0;">
+                            <img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static Meshes" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="media-item" style="margin: 0;">
+                            <video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
+                                <source src="images/ue/mazzei_cut.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="media-item" style="margin: 0;">
+                            <img src="images/ue/jefferson_hair.jpg" alt="Hair Grooming" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
+                        </div>
+                        <div class="media-item" style="margin: 0;">
+                            <video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; border: var(--border);">
+                                <source src="images/ue/jeff_cut.mp4" type="video/mp4">
+                            </video>
                         </div>
                     </div>
                     
-                    <!-- TEXT RIGHT -->
-                    <div class="split-text card">
-                        <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Holobox Integration</h4>
-                        <p class="placeholder-text">
-                            [Placeholder text] Displaying MetaHumans in a physical Holobox requires a complex multi-camera setup within Unreal Engine. The scene must be rendered from multiple specific angles simultaneously to construct the convincing illusion of a 3D holographic presence in the real world.
+                    <!-- TEXT RIGHT (30%) -->
+                    <div class="split-text card" style="flex: 1;">
+                        <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Digital Recreations & Interactive Holograms</h4>
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px;">
+                            The process of reviving historical figures begins with high-density point clouds, which are meticulously converted into workable static meshes directly within Unreal Engine. Advanced grooming tools are then employed to recreate fine details like hair and eyebrows, followed by rigging these intricate models to the MetaHuman framework for full body and facial animations.
                         </p>
-                        <p class="placeholder-text">
-                            [Placeholder text] These digital avatars, such as AOI and ADA, are fully interactive. By utilizing real-time rendering capabilities, the avatars can respond to audience inputs with minimal latency, making the holographic experience feel entirely seamless and alive.
-                        </p>
-                    </div>
-                </div>
-
-                <div style="border-top: 1px solid rgba(255,255,255,0.05); margin: 40px 0;"></div>
-
-                <div class="split-layout reverse">
-                    <!-- MEDIA RIGHT -->
-                    <div class="split-media" style="display: flex; flex-direction: column; gap: 15px; max-width: 650px; margin: auto;">
-                        <!-- Upper Row: 2 Images -->
-                        <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; align-items: stretch;">
-                            <div class="media-item" style="flex: 1; margin: auto 0;">
-                                <img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static Meshes" style="aspect-ratio: 4/3; object-fit: cover; width: 100%; height: auto;">
-                                <div class="media-caption">Point clouds converted to static meshes</div>
-                            </div>
-                            <div class="media-item" style="flex: 1; margin: auto 0;">
-                                <img src="images/ue/jefferson_hair.jpg" alt="Hair Grooming" style="aspect-ratio: 4/3; object-fit: cover; width: 100%; height: auto;">
-                                <div class="media-caption">Detailed hair grooming in UE</div>
-                            </div>
-                        </div>
-                        <!-- Lower Row: 2 Videos -->
-                        <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; align-items: stretch;">
-                            <div class="media-item" style="flex: 1; margin: auto 0;">
-                                <video autoplay loop muted playsinline style="aspect-ratio: 4/5; object-fit: cover; width: 100%; height: auto; border-radius: 12px; border: var(--border);">
-                                    <source src="images/ue/mazzei_cut.mp4" type="video/mp4">
-                                </video>
-                                <div class="media-caption">Philip Mazzei: Fully animated MetaHuman</div>
-                            </div>
-                            <div class="media-item" style="flex: 1; margin: auto 0;">
-                                <video autoplay loop muted playsinline style="aspect-ratio: 4/5; object-fit: cover; width: 100%; height: auto; border-radius: 12px; border: var(--border);">
-                                    <source src="images/ue/jeff_cut.mp4" type="video/mp4">
-                                </video>
-                                <div class="media-caption">Thomas Jefferson: Fully animated MetaHuman</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TEXT LEFT -->
-                    <div class="split-text card">
-                        <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Digital Recreations: Mazzei & Jefferson</h4>
-                        <p class="placeholder-text">
-                            [Placeholder text] The process of reviving historical figures begins with high-density point clouds. These point clouds are meticulously converted into workable static meshes directly within Unreal Engine, forming the foundational geometry for the characters.
-                        </p>
-                        <p class="placeholder-text">
-                            [Placeholder text] Once the base meshes are established, advanced grooming tools are employed to recreate hair, eyebrows, and other fine details. The final step involves rigging these intricate models to the MetaHuman framework, allowing for full body and facial animations that bring historical personalities back to life.
+                        <p style="color: var(--text-muted); line-height: 1.8;">
+                            These digital avatars—whether historical recreations like Mazzei and Jefferson, or interactive avatars like AOI and ADA—can be projected into physical Holoboxes. Displaying MetaHumans holographically requires a complex multi-camera setup within Unreal Engine to render specific angles simultaneously, constructing a seamless, real-time 3D illusion that can respond to audience inputs with minimal latency.
                         </p>
                     </div>
                 </div>
