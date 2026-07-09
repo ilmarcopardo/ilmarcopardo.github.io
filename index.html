@@ -350,32 +350,32 @@
                 
                 <div class="split-layout">
                     <!-- MEDIA LEFT -->
-                    <div class="split-media" style="display: flex; flex-direction: row; gap: 15px;">
-                        <!-- Images Column -->
-                        <div class="media-masonry" style="flex: 1; margin-top: 0;">
-                            <div class="media-item">
-                                <img src="images/robotics/abel_and_seth.jpg" alt="Abel and Seth">
+                    <div class="split-media" style="display: flex; flex-direction: column; gap: 15px; max-width: 650px; margin: auto;">
+                        <!-- Upper Row: 3 Images -->
+                        <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; align-items: stretch; width: 100%;">
+                            <a href="https://forelab.unipi.it/technologies/abel-new-generation-hyper-realistic-humanoid-robot" target="_blank" class="media-item" style="flex: 0.59; text-decoration: none; margin: auto 0;">
+                                <img src="images/robotics/abel.jpg" alt="Abel Close up" style="width: 100%; height: auto; object-fit: contain;">
+                                <div class="media-caption" style="color: var(--accent);">Abel <i class="fas fa-external-link-alt fa-xs" style="margin-left: 5px;"></i></div>
+                            </a>
+                            <div class="media-item" style="flex: 0.75; margin: auto 0;">
+                                <img src="images/robotics/abel_and_seth.jpg" alt="Abel and Seth" style="width: 100%; height: auto; object-fit: contain;">
                                 <div class="media-caption">Abel & Seth</div>
                             </div>
-                            <a href="https://forelab.unipi.it/technologies/abel-new-generation-hyper-realistic-humanoid-robot" target="_blank" class="media-item" style="text-decoration: none;">
-                                <img src="images/robotics/Abel.jpg" alt="Abel Close up">
-                                <div class="media-caption" style="color: var(--accent);">Abel Close-up <i class="fas fa-external-link-alt fa-xs" style="margin-left: 5px;"></i></div>
-                            </a>
-                            <div class="media-item">
-                                <img src="images/robotics/seth.jpg" alt="Seth Close up">
-                                <div class="media-caption">Seth Close-up</div>
+                            <div class="media-item" style="flex: 0.62; margin: auto 0;">
+                                <img src="images/robotics/seth.jpg" alt="Seth Close up" style="width: 100%; height: auto; object-fit: contain;">
+                                <div class="media-caption">Seth</div>
                             </div>
                         </div>
-                        <!-- Videos Column -->
-                        <div style="display: flex; flex-direction: row; gap: 15px; flex: 1.5;">
-                            <div class="media-item" style="flex: 1;">
-                                <video autoplay loop muted playsinline>
+                        <!-- Lower Row: 2 Videos -->
+                        <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; align-items: stretch; width: 100%;">
+                            <div class="media-item" style="flex: 0.73; margin: auto 0;">
+                                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
                                     <source src="images/robotics/abel_moving.mp4" type="video/mp4">
                                 </video>
                                 <div class="media-caption"><strong>Abel</strong>: Real-time collision avoidance with MoveIt</div>
                             </div>
-                            <div class="media-item" style="flex: 1;">
-                                <video autoplay loop muted playsinline>
+                            <div class="media-item" style="flex: 0.78; margin: auto 0;">
+                                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
                                     <source src="images/robotics/seth_facial_retargeting.mp4" type="video/mp4">
                                 </video>
                                 <div class="media-caption"><strong>Seth</strong>: Real-time facial retargeting during conversation</div>
@@ -407,23 +407,23 @@
                 
                 <div class="split-layout reverse">
                     <!-- MEDIA RIGHT -->
-                    <div class="split-media">
-                        <div class="media-masonry" style="width: 70%; margin: 0 auto;">
-                            <div class="media-item">
-                                <img src="images/sad/brave_exp.png" alt="VR Scenario Setup">
+                    <div class="split-media" style="display: flex; flex-direction: column; gap: 15px; max-width: 650px; margin: auto;">
+                        <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; align-items: stretch;">
+                            <div class="media-item" style="flex: 2.21; margin: auto 0;">
+                                <img src="images/sad/brave_exp.png" alt="VR Scenario Setup" style="width: 100%; height: auto; object-fit: contain;">
                                 <div class="media-caption">Immersive VR scenario with biometric sensor array</div>
                             </div>
-                            <div class="media-item">
-                                <img src="images/sad/brave_realtime.jpg" alt="Realtime Data Interface">
+                            <div class="media-item" style="flex: 1.78; margin: auto 0;">
+                                <img src="images/sad/brave_realtime.jpg" alt="Realtime Data Interface" style="width: 100%; height: auto; object-fit: contain;">
                                 <div class="media-caption">Real-time interface: ECG & EDA to anxiety features</div>
                             </div>
                         </div>
-                        <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; max-width: 450px; margin: 15px auto 0; justify-content: center;">
-                            <div class="media-item" style="flex: 1;">
-                                <video autoplay loop muted playsinline>
+                        <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; justify-content: center;">
+                            <div class="media-item" style="flex: 1.38; max-width: 80%; margin: auto;">
+                                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
                                     <source src="images/sad/brave_video_cut.mp4" type="video/mp4">
                                 </video>
-                                <div class="media-caption">Real-time anxiety level detection during the VR experience</div>
+                                <div class="media-caption">Real-time anxiety level detection during the VR experience. This is fast forwarded by 8 times, to make it visible.</div>
                             </div>
                         </div>
                     </div>
@@ -452,27 +452,29 @@
                 
                 <div class="split-layout">
                     <!-- MEDIA LEFT -->
-                    <div class="split-media" style="display: flex; flex-direction: row; gap: 15px;">
-                        <!-- Left Column (Horizontal Video + Images) -->
-                        <div style="display: flex; flex-direction: column; gap: 15px; flex: 1;">
-                            <div class="media-item">
-                                <video autoplay loop muted playsinline>
+                    <div class="split-media" style="display: flex; flex-direction: column; gap: 15px; max-width: 650px; margin: auto;">
+                        <!-- Upper Row: 2 Images -->
+                        <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; align-items: stretch; width: 100%;">
+                            <div class="media-item" style="flex: 1.95; margin: auto 0;">
+                                <img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA" style="width: 100%; height: auto; object-fit: contain;">
+                                <div class="media-caption">AOI & ADA Interactive Avatars</div>
+                            </div>
+                            <div class="media-item" style="flex: 1.40; margin: auto 0;">
+                                <img src="images/ue/aoi_cams.jpg" alt="AOI Cameras" style="width: 100%; height: auto; object-fit: contain;">
+                                <div class="media-caption">Multi-camera setup for Holobox rendering</div>
+                            </div>
+                        </div>
+                        <!-- Lower Row: 2 Videos -->
+                        <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; align-items: stretch; width: 100%;">
+                            <!-- AOI Triple Video -->
+                            <div class="media-item" style="flex: 2.01; margin: auto 0;">
+                                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
                                     <source src="images/ue/aoi_cut.mp4" type="video/mp4">
                                 </video>
                                 <div class="media-caption">3-angle split render required for holographic illusion</div>
                             </div>
-                            <div style="display: flex; flex-direction: row; gap: 15px;">
-                                <div class="media-item" style="flex: 1;">
-                                    <img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA">
-                                </div>
-                                <div class="media-item" style="flex: 1;">
-                                    <img src="images/ue/aoi_cams.jpg" alt="AOI Cameras">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Right Column (Vertical Video) -->
-                        <div style="display: flex; flex-direction: column; flex: 0.7; max-width: 280px;">
-                            <div class="media-item" style="height: 100%; justify-content: center; background: transparent; border: none;">
+                            <!-- Holobox Video (Vertical) -->
+                            <div class="media-item" style="flex: 1.00; margin: auto 0; background: transparent; border: none;">
                                 <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
                                     <source src="images/ue/aoi_holobox.mp4" type="video/mp4">
                                 </video>
@@ -497,26 +499,28 @@
 
                 <div class="split-layout reverse">
                     <!-- MEDIA RIGHT -->
-                    <div class="split-media">
-                        <div class="media-masonry" style="width: 70%; margin: 0 auto;">
-                            <div class="media-item">
-                                <img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static Meshes" style="aspect-ratio: 4/3; object-fit: cover;">
+                    <div class="split-media" style="display: flex; flex-direction: column; gap: 15px; max-width: 650px; margin: auto;">
+                        <!-- Upper Row: 2 Images -->
+                        <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; align-items: stretch;">
+                            <div class="media-item" style="flex: 1; margin: auto 0;">
+                                <img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static Meshes" style="aspect-ratio: 4/3; object-fit: cover; width: 100%; height: auto;">
                                 <div class="media-caption">Point clouds converted to static meshes</div>
                             </div>
-                            <div class="media-item">
-                                <img src="images/ue/jefferson_hair.jpg" alt="Hair Grooming" style="aspect-ratio: 4/3; object-fit: cover;">
+                            <div class="media-item" style="flex: 1; margin: auto 0;">
+                                <img src="images/ue/jefferson_hair.jpg" alt="Hair Grooming" style="aspect-ratio: 4/3; object-fit: cover; width: 100%; height: auto;">
                                 <div class="media-caption">Detailed hair grooming in UE</div>
                             </div>
                         </div>
-                        <div style="display: flex; flex-direction: row; gap: 15px; width: 90%; margin: 15px auto 0; justify-content: center;">
-                            <div class="media-item" style="flex: 1; min-width: 140px;">
-                                <video autoplay loop muted playsinline style="aspect-ratio: 4/5; object-fit: cover;">
+                        <!-- Lower Row: 2 Videos -->
+                        <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; align-items: stretch;">
+                            <div class="media-item" style="flex: 1; margin: auto 0;">
+                                <video autoplay loop muted playsinline style="aspect-ratio: 4/5; object-fit: cover; width: 100%; height: auto; border-radius: 12px; border: var(--border);">
                                     <source src="images/ue/mazzei_cut.mp4" type="video/mp4">
                                 </video>
                                 <div class="media-caption">Philip Mazzei: Fully animated MetaHuman</div>
                             </div>
-                            <div class="media-item" style="flex: 1; min-width: 140px;">
-                                <video autoplay loop muted playsinline style="aspect-ratio: 4/5; object-fit: cover;">
+                            <div class="media-item" style="flex: 1; margin: auto 0;">
+                                <video autoplay loop muted playsinline style="aspect-ratio: 4/5; object-fit: cover; width: 100%; height: auto; border-radius: 12px; border: var(--border);">
                                     <source src="images/ue/jeff_cut.mp4" type="video/mp4">
                                 </video>
                                 <div class="media-caption">Thomas Jefferson: Fully animated MetaHuman</div>
