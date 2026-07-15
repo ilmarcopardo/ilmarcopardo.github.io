@@ -330,7 +330,13 @@
                         <strong>Abel</strong> is a new-generation hyper-realistic humanoid, conceived as a research platform for social interaction, emotion modeling, and embodied intelligence. Resembling an 11–12 year old boy, Abel is a collaboration between the University of Pisa and Gustav Hoegen (Biomimic Studio, London). It comprises a head and upper torso driven by 42 high-end servo motors (Futaba, MKS, Dynamixel); the head alone houses 21 motors dedicated to facial expressions, gaze, and speech simulation. It is equipped with a torso camera, binaural microphones, and an internal speaker.
                     </p>
                     <p>
-                        <strong>Seth</strong>, born from the same collaboration, relies on an array of 13 Dynamixel servo motors that grant precise control over its intricate facial movements. I began by entirely rewriting Abel's control and movement architecture from scratch on ROS 2, driving the body with MoveIt for motion planning and collision avoidance and prototyping in Gazebo. Now, leveraging Seth's mechanical precision, I use deep learning for real-time, high-fidelity facial retargeting — pushing the boundaries of human–robot affective interaction.
+                        On Abel I work on the control stack in <strong>ROS 2</strong>: the body and arms run through <strong>MoveIt</strong> for motion planning and collision avoidance, tested in <strong>Gazebo</strong>, while the face is driven by a middleware that blends expressions, visemes for lip-sync, and gaze.
+                    </p>
+                    <p>
+                        <strong>Seth</strong>, from the same collaboration, is built around 30 Dynamixel servos: a body-driven rotating neck, articulated arms and hands, and a face whose 13 dedicated motors drive the lips, jaw, eyes, eyelids, eyebrows, and mouth corners with precise control. It carries a chest-mounted Intel RealSense camera, a ReSpeaker microphone array, and an internal speaker.
+                    </p>
+                    <p>
+                        With Seth I'm currently exploring real-time facial retargeting — using deep learning to map a person's expressions from video onto its facial servos. This is ongoing, work-in-progress research.
                     </p>
                 </div>
 
