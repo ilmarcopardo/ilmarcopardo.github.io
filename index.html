@@ -3,664 +3,566 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marco Pardini | AI & Cognitive Robotics</title>
+    <title>Marco Pardini</title>
+    <meta name="description" content="Marco Pardini — PhD student in Smart Industry at the University of Pisa. Research at the intersection of AI and robotics: hyper-realistic, emotionally-aware humanoids.">
     <link rel="icon" href="images/mp_icon.jpg">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CORE VARIABLES & RESET --- */
         :root {
-            --bg-color: #030712;
-            --card-bg: rgba(17, 24, 39, 0.6);
-            --accent: #00d4ff; 
-            --accent-purple: #8b5cf6;
-            --accent-gradient: linear-gradient(135deg, var(--accent), var(--accent-purple));
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border: 1px solid rgba(255, 255, 255, 0.05);
-            --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            --bg:      #fdfcfa;
+            --surface: #ffffff;
+            --ink:     #1c1c1e;
+            --muted:   #5f5f66;
+            --faint:   #8a8a90;
+            --line:    #e7e3db;
+            --accent:  #2b50c8;
+            --accent-soft: rgba(43, 80, 200, 0.08);
+            --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+            --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --maxw: 1060px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.65;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
-        /* --- BACKGROUND PARTICLES --- */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1; 
-            background-image: radial-gradient(circle at 50% 0%, #111827 0%, #030712 80%);
+        a { color: var(--accent); text-decoration: none; transition: color .2s; }
+        a:hover { color: #16308a; }
+
+        .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+        /* --- NAV --- */
+        nav {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(253, 252, 250, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+        nav .wrap {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 60px;
+        }
+        nav .brand { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--ink); }
+        nav .links { display: flex; gap: 26px; }
+        nav .links a { color: var(--muted); font-size: 0.92rem; font-weight: 500; }
+        nav .links a:hover { color: var(--accent); }
+        @media (max-width: 620px) { nav .links { display: none; } }
+
+        /* --- HERO --- */
+        header.hero { padding: 72px 0 20px; }
+        .hero-inner { display: flex; gap: 46px; align-items: center; }
+        .portrait {
+            flex: none;
+            width: 190px; aspect-ratio: 3 / 4;
+            border-radius: 14px; overflow: hidden;
+            border: 1px solid var(--line);
+            box-shadow: 0 18px 40px -22px rgba(0,0,0,.35);
+        }
+        .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .hero-text h1 {
+            font-family: var(--serif); font-weight: 600;
+            font-size: 3.1rem; line-height: 1.05; letter-spacing: -0.01em;
+            margin-bottom: 12px;
+        }
+        .hero-text .title { font-size: 1.12rem; color: var(--ink); font-weight: 500; }
+        .hero-text .inst { color: var(--muted); margin-bottom: 6px; }
+        .hero-text .tagline {
+            font-family: var(--serif); font-size: 1.2rem; font-style: italic;
+            color: var(--muted); margin: 14px 0 22px; max-width: 46ch;
+        }
+        .social { display: flex; gap: 18px; font-size: 1.25rem; }
+        .social a { color: var(--faint); }
+        .social a:hover { color: var(--accent); transform: translateY(-2px); transition: .2s; }
+
+        @media (max-width: 640px) {
+            .hero-inner { flex-direction: column; align-items: flex-start; gap: 26px; }
+            .hero-text h1 { font-size: 2.4rem; }
+            header.hero { padding: 48px 0 8px; }
         }
 
-        /* --- LAYOUT UTILITIES --- */
-        .container {
-            width: 100%;
-            padding: 20px 5%;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
+        /* --- SECTIONS --- */
+        section { padding: 56px 0; border-top: 1px solid var(--line); scroll-margin-top: 70px; }
+        section:first-of-type { border-top: none; }
 
-        section { margin-bottom: 100px; }
-        
-        a { text-decoration: none; color: var(--accent); transition: 0.3s; }
-        a:hover { color: #fff; text-shadow: 0 0 10px var(--accent); }
+        .eyebrow {
+            display: flex; align-items: center; gap: 9px;
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.09em;
+            text-transform: uppercase; color: var(--accent);
+            margin-bottom: 14px;
+        }
+        h2 {
+            font-family: var(--serif); font-weight: 500;
+            font-size: 2rem; letter-spacing: -0.01em; line-height: 1.15;
+            margin-bottom: 18px;
+        }
+        h3 {
+            font-family: var(--serif); font-weight: 600;
+            font-size: 1.3rem; margin-bottom: 10px;
+        }
+        .lede { font-size: 1.18rem; color: var(--muted); max-width: 62ch; }
+        .prose p { color: var(--muted); max-width: 70ch; margin-bottom: 14px; }
+        .prose p:last-child { margin-bottom: 0; }
+        .prose strong { color: var(--ink); font-weight: 600; }
 
-        /* --- HEADER / HERO --- */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 80px 0 60px;
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .profile-img-container {
-            width: 220px; 
-            height: 220px; 
-            border-radius: 50%;
-            padding: 4px;
-            background: var(--accent-gradient);
-            margin-bottom: 25px;
-            box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
-            overflow: hidden; 
-            position: relative;
-        }
-
-        .profile-img-container::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 50%;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-            pointer-events: none;
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid var(--bg-color);
-            object-position: center; 
-        }
-
-        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
-        .hero .highlight { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero .role { font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin-bottom: 30px; line-height: 1.8; font-weight: 300;}
-        
-        .social-links { display: flex; gap: 25px; font-size: 1.8rem; }
-        .social-links a { color: var(--text-muted); }
-        .social-links a:hover { color: var(--accent); transform: translateY(-5px); }
-
-        /* --- CARDS (Premium Glassmorphism) --- */
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: var(--border);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: var(--glass-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 35px;
-            color: #fff;
-        }
-        .section-title i { margin-right: 15px; color: var(--accent); font-size: 1.8rem; }
-        .section-subtitle {
-            font-size: 1.1rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6;
-        }
-
-                /* --- MEDIA GRIDS & SPLIT LAYOUT --- */
-        .split-layout {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            margin-top: 20px;
-        }
-        
-        @media (max-width: 900px) {
-            .split-layout { flex-direction: column !important; }
-        }
-
-        .split-layout.reverse {
-            flex-direction: row-reverse;
-        }
-
-        .split-media {
-            flex: 1.5;
-            min-width: 300px;
-        }
-
-        .split-text {
-            flex: 1;
-            min-width: 280px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .split-text.card {
-            padding: 30px;
-        }
-
-        .split-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .placeholder-text {
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-                .media-masonry {
-            column-count: 2;
-            column-gap: 15px;
-        }
-        
-        .media-masonry .media-item {
-            break-inside: avoid;
-            margin-bottom: 15px;
-        }
-
-        @media (max-width: 600px) {
-            .media-masonry { column-count: 1; }
-        }
-
-        .media-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            border: var(--border);
-            background: rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .media-item img, .media-item video {
-            width: 100%;
-            height: auto;
+        /* --- COLLAGE / JUSTIFIED GALLERY --- */
+        .gallery { display: flex; gap: 12px; margin-top: 26px; max-width: 820px; }
+        .gallery + .gallery { margin-top: 12px; }
+        .tile {
+            flex: var(--ar) 1 0; min-width: 0;
+            border-radius: 10px; overflow: hidden;
+            border: 1px solid var(--line);
+            background: #f2efe9;
             display: block;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            margin: auto 0;
+            box-shadow: 0 10px 28px -20px rgba(0,0,0,.4);
         }
+        .tile img, .tile video {
+            width: 100%; aspect-ratio: var(--ar);
+            object-fit: cover; display: block;
+            transition: transform .5s ease;
+        }
+        a.tile img, a.tile video { }
+        .tile:hover img, .tile:hover video { transform: scale(1.035); }
+        .tile.doc { background: #fff; border-color: var(--line); }
+        .tile.doc img { object-fit: contain; }
 
-        .media-caption {
-            padding: 10px;
-            font-size: 0.9rem;
-            color: var(--text-main);
-            text-align: center;
-            background: rgba(20, 20, 25, 0.8);
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .cap { margin-top: 12px; font-size: 0.9rem; color: var(--faint); max-width: 70ch; }
+        .cap .lbl { color: var(--muted); font-weight: 600; }
+
+        .subhead {
+            font-family: var(--sans); font-weight: 600; font-size: 0.82rem;
+            letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
+            margin: 40px 0 4px;
         }
+        .subhead:first-of-type { margin-top: 30px; }
 
         /* --- AFFILIATIONS --- */
-        .affiliations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            justify-content: center;
-        }
+        .affils { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 26px; }
+        @media (max-width: 640px) { .affils { grid-template-columns: 1fr; } }
+        .affil { padding: 20px 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); transition: .2s; }
+        .affil:hover { border-color: rgba(43,80,200,.35); box-shadow: 0 12px 30px -22px rgba(0,0,0,.4); }
+        .affil h4 { font-family: var(--serif); font-size: 1.12rem; font-weight: 600; margin-bottom: 4px; }
+        .affil h4 a { color: var(--ink); }
+        .affil h4 a:hover { color: var(--accent); }
+        .affil p { font-size: 0.92rem; color: var(--muted); line-height: 1.5; }
+        .affil .fa-arrow-up-right-from-square { font-size: 0.68em; color: var(--faint); margin-left: 5px; }
 
-        .affiliation-item {
-            text-align: center;
-            padding: 20px;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: 0.3s;
+        /* --- LIST ITEMS (publications, projects) --- */
+        .list { margin-top: 22px; border-top: 1px solid var(--line); }
+        .row {
+            display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+            padding: 16px 4px; border-bottom: 1px solid var(--line);
+            transition: padding .2s, background .2s;
         }
-        .affiliation-item:hover { background: rgba(255,255,255,0.05); }
-
-        .affiliation-item h4 { color: #fff; margin-bottom: 8px; font-size: 1.2rem; }
-        .affiliation-item p { font-size: 0.95rem; color: var(--text-muted); }
-
-        /* --- PROJECTS & PUBLICATIONS --- */
-        .list-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .list-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: 0.3s;
-        }
-        .list-item:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(0, 212, 255, 0.2);
-            transform: translateX(5px);
-        }
-        .list-item span { color: var(--text-main); font-weight: 500; font-size: 1.1rem; }
-        .list-item i { font-size: 0.9rem; color: var(--text-muted); transition: 0.3s;}
-        .list-item:hover i { color: var(--accent); }
+        a.row:hover { background: var(--accent-soft); padding-left: 12px; padding-right: 12px; border-radius: 8px; }
+        .row .main { color: var(--ink); font-weight: 500; }
+        .row .venue { display: block; font-size: 0.88rem; color: var(--muted); font-weight: 400; margin-top: 3px; font-family: var(--serif); font-style: italic; }
+        .row .meta { flex: none; display: flex; align-items: center; gap: 12px; color: var(--faint); font-size: 0.88rem; }
 
         /* --- EDUCATION --- */
-        .edu-item { margin-bottom: 25px; padding-left: 20px; border-left: 2px solid var(--accent-purple); position: relative;}
-        .edu-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
-        .edu-item:last-child { margin-bottom: 0; }
-        .edu-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; gap: 10px;}
-        .edu-header h4 { font-size: 1.2rem; color: #fff; }
-        .edu-date { font-size: 0.85rem; color: var(--accent); font-weight: 600; background: rgba(0, 212, 255, 0.1); padding: 4px 10px; border-radius: 20px; }
-        .edu-details { font-size: 1rem; color: var(--text-muted); }
+        .edu { margin-top: 24px; }
+        .edu-item { padding: 16px 0; border-bottom: 1px solid var(--line); }
+        .edu-item:last-child { border-bottom: none; }
+        .edu-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+        .edu-top h4 { font-family: var(--serif); font-size: 1.18rem; font-weight: 600; }
+        .edu-date { font-size: 0.85rem; color: var(--accent); font-weight: 600; white-space: nowrap; }
+        .edu-item p { color: var(--muted); font-size: 0.95rem; margin-top: 2px; }
+        .edu-item .thesis { font-style: italic; font-family: var(--serif); }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .section-title { font-size: 1.6rem; }
-            .card { padding: 25px; }
-            .hero .role { font-size: 1.1rem; }
+        /* --- AWARD --- */
+        .award { display: flex; gap: 30px; align-items: center; margin-top: 24px; }
+        .award figure { flex: 1.3; min-width: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 14px 34px -24px rgba(0,0,0,.4); }
+        .award figure img { width: 100%; display: block; }
+        .award .txt { flex: 1; }
+        @media (max-width: 640px) { .award { flex-direction: column; align-items: flex-start; } }
+
+        /* --- FOOTER --- */
+        footer { border-top: 1px solid var(--line); padding: 34px 0 60px; }
+        footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+        footer p { color: var(--faint); font-size: 0.88rem; }
+        footer .social { font-size: 1.05rem; }
+
+        @media (max-width: 620px) {
+            body { font-size: 16px; }
+            h2 { font-size: 1.7rem; }
+            .lede { font-size: 1.05rem; }
         }
     </style>
 </head>
 <body>
 
-    <div id="particles-js"></div>
-
-    <div class="container">
-        
-        <!-- HERO SECTION -->
-        <header class="hero">
-            <div class="profile-img-container">
-                <img src="images/portrait.jpg" alt="Marco Pardini" class="profile-img">
+    <nav>
+        <div class="wrap">
+            <span class="brand">Marco Pardini</span>
+            <div class="links">
+                <a href="#research">Research</a>
+                <a href="#affiliations">Affiliations</a>
+                <a href="#publications">Publications</a>
+                <a href="#education">Education</a>
+                <a href="mailto:marco.pardini00@gmail.com">Contact</a>
             </div>
-            <h1>Marco Pardini</h1>
-            <p class="role">
-                <strong class="highlight">PhD Student in Smart Industry @ UniPi</strong><br><br>
-                My research bridges the gap between <strong>Artificial Intelligence</strong> and <strong>Robotics</strong>, focusing on making humanoid robots hyper-realistic in real-time, with a specific emphasis on facial control. I leverage <strong>Unreal Engine</strong> for advanced simulations and <strong>biosignals</strong> to decode human emotional states. My ultimate goal is to embed this emotional awareness into cognitive architectures, enabling humans to interact seamlessly with robots that genuinely understand and respond to the emotional state of their interlocutors.
-            </p>
-            
-            <div class="social-links">
-                <a href="https://github.com/ilmarcopardo" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://it.linkedin.com/in/marco-pardini-12a566236" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:marco.pardini00@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.instagram.com/ilmarcopardo/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-        </header>
+        </div>
+    </nav>
 
-        <!-- AFFILIATIONS -->
-        <section>
-            <div class="card">
-                <h3 class="section-title"><i class="fas fa-university"></i> Research Groups & Affiliations</h3>
-                <div class="affiliations-grid">
-                    <div class="affiliation-item">
-                        <a href="https://mlpi.ing.unipi.it/" target="_blank"><h4>MLPI Group <i class="fas fa-external-link-alt fa-xs"></i></h4></a>
-                        <p>Machine Learning and Process Intelligence Group, Pisa</p>
-                    </div>
-                    <div class="affiliation-item">
-                        <a href="https://www.centropiaggio.unipi.it/" target="_blank"><h4>Centro Piaggio <i class="fas fa-external-link-alt fa-xs"></i></h4></a>
-                        <p>Affiliated Researcher</p>
-                    </div>
-                    <div class="affiliation-item">
-                        <a href="https://braveproject.unipi.it/" target="_blank"><h4>BRAVE Project <i class="fas fa-external-link-alt fa-xs"></i></h4></a>
-                        <p>Project Member</p>
-                    </div>
+    <header class="hero">
+        <div class="wrap hero-inner">
+            <div class="portrait">
+                <img src="images/portrait.jpg" alt="Marco Pardini">
+            </div>
+            <div class="hero-text">
+                <h1>Marco Pardini</h1>
+                <p class="title">PhD Student in Smart Industry</p>
+                <p class="inst">University of Pisa</p>
+                <p class="tagline">Building hyper-realistic, emotionally-aware humanoids at the intersection of AI and robotics.</p>
+                <div class="social">
+                    <a href="https://scholar.google.com/citations?user=1XGhMwgAAAAJ" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://github.com/ilmarcopardo" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://it.linkedin.com/in/marco-pardini-12a566236" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:marco.pardini00@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/ilmarcopardo/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
-                <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
-                    <p style="color: var(--text-muted); line-height: 1.8; font-size: 1.05rem; text-align: center;">
-                        My PhD research sits at the interdisciplinary crossroads of Computer Engineering and Biomedical Engineering, jointly supervised by <a href="https://docenti.ing.unipi.it/m.cimino/" target="_blank" style="color: var(--accent); text-decoration: none;">Prof. Mario Cimino</a> and <a href="https://www.centropiaggio.unipi.it/~greco" target="_blank" style="color: var(--accent); text-decoration: none;">Prof. Alberto Greco</a>. Prof. Cimino leads research in deep learning, explainable AI, computer vision, and cognitive architectures. Conversely, Prof. Greco is a leading expert in electrodermal signal analysis and affective computing. Operating precisely at the intersection of these two domains, my specific focus is applying advanced deep learning and computer vision algorithms directly to robotic platforms—bridging the gap between cognitive artificial intelligence and physiological affective response.
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="wrap">
+                <p class="eyebrow"><i class="fas fa-circle" style="font-size:.5em"></i> About</p>
+                <p class="lede">
+                    My research bridges <strong style="color:var(--ink);font-weight:600">Artificial Intelligence</strong> and <strong style="color:var(--ink);font-weight:600">Robotics</strong>, with the goal of making humanoid robots hyper-realistic in real time — with a particular emphasis on facial control.
+                </p>
+                <div class="prose" style="margin-top:22px">
+                    <p>
+                        I use <strong>Unreal Engine</strong> for high-fidelity simulation and <strong>biosignals</strong> to decode human emotional states. My aim is to embed this emotional awareness into cognitive architectures, so that people can interact with robots that genuinely understand and respond to the emotional state of their interlocutor.
                     </p>
                 </div>
             </div>
         </section>
 
-                        <!-- ROBOTICS SHOWCASE -->
-        <section>
-            <div class="card">
-                <h3 class="section-title"><i class="fas fa-robot"></i> Cognitive Humanoid Robotics</h3>
-                <p class="section-subtitle">
-                    Working directly with advanced humanoid platforms, focusing on hyper-realistic control, collision avoidance, and facial retargeting in real-time to create believable interactions.
-                </p>
-                
-                <div class="split-layout">
-                    <!-- MEDIA LEFT -->
-                    <div class="split-media" style="display: flex; flex-direction: column; gap: 15px; max-width: 650px; margin: auto;">
-                        <!-- Upper Row: 3 Images -->
-                        <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; align-items: stretch; width: 100%;">
-                            <a href="https://forelab.unipi.it/technologies/abel-new-generation-hyper-realistic-humanoid-robot" target="_blank" class="media-item" style="flex: 0.59; text-decoration: none; margin: auto 0;">
-                                <img src="images/robotics/abel.jpg" alt="Abel Close up" style="width: 100%; height: auto; object-fit: contain;">
-                                <div class="media-caption" style="color: var(--accent);">Abel <i class="fas fa-external-link-alt fa-xs" style="margin-left: 5px;"></i></div>
-                            </a>
-                            <div class="media-item" style="flex: 0.75; margin: auto 0;">
-                                <img src="images/robotics/abel_and_seth.jpg" alt="Abel and Seth" style="width: 100%; height: auto; object-fit: contain;">
-                                <div class="media-caption">Abel & Seth</div>
-                            </div>
-                            <div class="media-item" style="flex: 0.62; margin: auto 0;">
-                                <img src="images/robotics/seth.jpg" alt="Seth Close up" style="width: 100%; height: auto; object-fit: contain;">
-                                <div class="media-caption">Seth</div>
-                            </div>
-                        </div>
-                        <!-- Lower Row: 2 Videos -->
-                        <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; align-items: stretch; width: 100%;">
-                            <div class="media-item" style="flex: 0.73; margin: auto 0;">
-                                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
-                                    <source src="images/robotics/abel_moving.mp4" type="video/mp4">
-                                </video>
-                                <div class="media-caption"><strong>Abel</strong>: Real-time collision avoidance with MoveIt</div>
-                            </div>
-                            <div class="media-item" style="flex: 0.78; margin: auto 0;">
-                                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
-                                    <source src="images/robotics/seth_facial_retargeting.mp4" type="video/mp4">
-                                </video>
-                                <div class="media-caption"><strong>Seth</strong>: Real-time facial retargeting during conversation</div>
-                            </div>
-                        </div>
+        <!-- RESEARCH: HUMANOID ROBOTICS -->
+        <section id="research">
+            <div class="wrap">
+                <p class="eyebrow"><i class="fas fa-robot"></i> Research · Portfolio</p>
+                <h2>Cognitive Humanoid Robotics</h2>
+                <div class="prose">
+                    <p>
+                        I work directly with hyper-realistic humanoid platforms, focusing on real-time control, collision avoidance, and facial retargeting to create believable interactions.
+                    </p>
+                    <p>
+                        <strong>Abel</strong> is a new-generation hyper-realistic humanoid, conceived as a research platform for social interaction, emotion modeling, and embodied intelligence. Resembling an 11–12 year old boy, Abel is a collaboration between the University of Pisa and Gustav Hoegen (Biomimic Studio, London). It comprises a head and upper torso driven by 42 high-end servo motors (Futaba, MKS, Dynamixel); the head alone houses 21 motors dedicated to facial expressions, gaze, and speech simulation. It is equipped with a torso camera, binaural microphones, and an internal speaker.
+                    </p>
+                    <p>
+                        <strong>Seth</strong>, born from the same collaboration, relies on an array of 13 Dynamixel servo motors that grant sub-millimeter control over its intricate facial movements. I began by entirely rewriting Abel's control and movement architecture from scratch. Now, leveraging Seth's mechanical precision, I use deep learning for real-time, high-fidelity facial retargeting — pushing the boundaries of human–robot affective interaction.
+                    </p>
+                </div>
+
+                <div class="gallery">
+                    <a class="tile" style="--ar:0.595" href="https://forelab.unipi.it/technologies/abel-new-generation-hyper-realistic-humanoid-robot" target="_blank">
+                        <img src="images/robotics/abel.jpg" alt="Abel, close up">
+                    </a>
+                    <div class="tile" style="--ar:0.75">
+                        <img src="images/robotics/abel_and_seth.jpg" alt="Abel and Seth">
                     </div>
-                    
-                    <!-- TEXT RIGHT -->
-                    <div class="split-text card">
-                        <h4 style="color: #fff; margin-bottom: 10px; font-size: 1.3rem;">Bringing Humanoids to Life</h4>
-                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px;">
-                            <strong>Abel</strong> is a new generation hyper-realistic humanoid robot, conceived as a research platform for social interaction, emotion modeling, and embodied intelligence. Resembling an 11–12 year old boy, Abel is a unique collaboration between the University of Pisa and Gustav Hoegen (Biomimic Studio, London). Physically, Abel comprises a head and upper torso driven by 42 high-end servo motors (Futaba, MKS, Dynamixel). The head alone houses 21 motors dedicated to facial expressions, gaze, and speech simulation, allowing Abel to express a wide spectrum of human emotions. The robot is also equipped with an integrated torso camera, binaural microphones to emulate human acoustic perception, and an internal speaker.
-                        </p>
-                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px;">
-                            <strong>Seth</strong>, born from the same collaboration, relies exclusively on an array of 13 Dynamixel servo motors. These grant extremely precise, sub-millimeter control over its intricate facial movements.
-                        </p>
-                        <p style="color: var(--text-muted); line-height: 1.8;">
-                            My primary objective within this domain is absolute control over these complex mechatronic systems. I began by entirely rewriting Abel's control and movement architecture from scratch. Now, leveraging Seth's extreme mechanical precision, I am utilizing Deep Learning to perform real-time, high-fidelity facial retargeting, pushing the boundaries of what is possible in human-robot affective interaction.
-                        </p>
+                    <div class="tile" style="--ar:0.621">
+                        <img src="images/robotics/seth.jpg" alt="Seth, close up">
+                    </div>
+                </div>
+                <p class="cap"><span class="lbl">Abel</span> and <span class="lbl">Seth</span> — the hyper-realistic humanoid platforms I work with.</p>
+
+                <div class="gallery">
+                    <div class="tile" style="--ar:0.7296">
+                        <video autoplay loop muted playsinline><source src="images/robotics/abel_moving.mp4" type="video/mp4"></video>
+                    </div>
+                    <div class="tile" style="--ar:0.7811">
+                        <video autoplay loop muted playsinline><source src="images/robotics/seth_facial_retargeting.mp4" type="video/mp4"></video>
+                    </div>
+                </div>
+                <p class="cap"><span class="lbl">Left</span> — Abel performing real-time collision avoidance with MoveIt. &nbsp;<span class="lbl">Right</span> — Seth's real-time facial retargeting of a talking person (work in progress).</p>
+            </div>
+        </section>
+
+        <!-- AFFECTIVE COMPUTING -->
+        <section>
+            <div class="wrap">
+                <p class="eyebrow"><i class="fas fa-heart-pulse"></i> Research · Portfolio</p>
+                <h2>Affective Computing &amp; Biosignals</h2>
+                <div class="prose">
+                    <p>
+                        In our work on continuous assessment of <strong>Social Anxiety Disorder (SAD)</strong> in Virtual Reality, we integrate continuous self-ratings with objective physiological data (ECG / EDA). Our <strong>Late-Fusion Transformer</strong> framework classified high- and low-anxiety groups with an F1-score of 0.853 and 82.5% accuracy.
+                    </p>
+                    <p>
+                        We are now tackling the harder problem of <strong>multivariate continuous regression</strong> — mapping dynamic, in-the-moment physiological signals directly to the user's fluctuating emotional state.
+                    </p>
+                </div>
+
+                <div class="gallery">
+                    <div class="tile" style="--ar:2.2099">
+                        <img src="images/sad/brave_exp.png" alt="VR experiment setup with physiological sensors">
+                    </div>
+                    <div class="tile" style="--ar:1.7778">
+                        <img src="images/sad/brave_realtime.jpg" alt="Real-time signal interface">
+                    </div>
+                </div>
+                <p class="cap"><span class="lbl">Left</span> — the sensor setup and VR scenario. &nbsp;<span class="lbl">Right</span> — the real-time interface turning ECG/EDA into features and anxiety levels.</p>
+
+                <div class="gallery">
+                    <div class="tile" style="--ar:1.3827">
+                        <video autoplay loop muted playsinline><source src="images/sad/brave_video_cut.mp4" type="video/mp4"></video>
+                    </div>
+                </div>
+                <p class="cap">Live, real-time anxiety detection during the VR experience (fast-forwarded 8×).</p>
+
+                <div class="gallery">
+                    <div class="tile doc" style="--ar:3.9378">
+                        <img src="images/sad/transformer_encoder_architecture.png" alt="Late-Fusion Transformer architecture">
+                    </div>
+                </div>
+                <p class="cap">The Late-Fusion Transformer encoder architecture behind the multimodal classification.</p>
+            </div>
+        </section>
+
+        <!-- UNREAL ENGINE -->
+        <section>
+            <div class="wrap">
+                <p class="eyebrow"><i class="fas fa-cube"></i> Research · Portfolio</p>
+                <h2>Unreal Engine &amp; MetaHumans</h2>
+                <div class="prose">
+                    <p>
+                        Reviving historical figures begins with high-density point clouds, meticulously converted into workable static meshes inside Unreal Engine. Advanced grooming tools recreate fine details, followed by rigging the models to the MetaHuman framework.
+                    </p>
+                    <p>
+                        These digital avatars can then be projected into physical <strong>Holoboxes</strong>. Displaying a MetaHuman holographically requires a multi-camera setup in Unreal Engine, rendering the same subject from several angles simultaneously to construct a seamless 3D illusion.
+                    </p>
+                </div>
+
+                <p class="subhead">Holographic projection — AOI &amp; ADA</p>
+                <div class="gallery">
+                    <div class="tile" style="--ar:1.4037">
+                        <img src="images/ue/aoi_cams.jpg" alt="Multi-camera Holobox render setup">
+                    </div>
+                    <div class="tile" style="--ar:0.6824">
+                        <video autoplay loop muted playsinline><source src="images/ue/aoi_holobox.mp4" type="video/mp4"></video>
+                    </div>
+                    <div class="tile" style="--ar:1.3655">
+                        <video autoplay loop muted playsinline><source src="images/ue/aoi_cut.mp4" type="video/mp4"></video>
+                    </div>
+                </div>
+                <p class="cap">The Holobox pipeline shown together: the multi-camera rig (left) renders the subject three times at different angles (center) to project correctly inside the Holobox itself (right).</p>
+
+                <div class="gallery">
+                    <div class="tile" style="--ar:2.2069">
+                        <img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA MetaHumans looking around">
+                    </div>
+                </div>
+                <p class="cap">AOI and ADA — MetaHumans looking around the scene.</p>
+
+                <p class="subhead">Reviving historical figures — Mazzei &amp; Jefferson</p>
+                <div class="gallery">
+                    <div class="tile" style="--ar:1.0917">
+                        <img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static meshes of Jefferson and Mazzei">
+                    </div>
+                    <div class="tile" style="--ar:2.0579">
+                        <img src="images/ue/jefferson_hair.jpg" alt="Hair grooming for Jefferson">
+                    </div>
+                </div>
+                <p class="cap"><span class="lbl">Left</span> — static meshes extracted from point clouds in Unreal Engine. &nbsp;<span class="lbl">Right</span> — grooming Jefferson's hair.</p>
+
+                <div class="gallery">
+                    <div class="tile" style="--ar:1.0673">
+                        <video autoplay loop muted playsinline><source src="images/ue/mazzei_cut.mp4" type="video/mp4"></video>
+                    </div>
+                    <div class="tile" style="--ar:1.0673">
+                        <video autoplay loop muted playsinline><source src="images/ue/jeff_cut.mp4" type="video/mp4"></video>
+                    </div>
+                </div>
+                <p class="cap">The final animated MetaHumans — Mazzei (left) and Jefferson (right).</p>
+            </div>
+        </section>
+
+        <!-- AFFILIATIONS & LAB -->
+        <section id="affiliations">
+            <div class="wrap">
+                <p class="eyebrow"><i class="fas fa-university"></i> Groups &amp; Affiliations</p>
+                <h2>Where I work</h2>
+                <div class="prose">
+                    <p>
+                        My PhD sits at the interdisciplinary crossroads of Computer Engineering and Biomedical Engineering, jointly supervised by <a href="https://docenti.ing.unipi.it/m.cimino/" target="_blank">Prof. Mario Cimino</a> and <a href="https://www.centropiaggio.unipi.it/~greco" target="_blank">Prof. Alberto Greco</a>. Prof. Cimino leads research in deep learning, explainable AI, computer vision, and cognitive architectures; Prof. Greco is a leading expert in electrodermal signal analysis and affective computing. Working at the intersection of these two domains, I apply deep learning and computer vision directly to robotic platforms — bridging cognitive AI and physiological affective response.
+                    </p>
+                </div>
+
+                <div class="affils">
+                    <div class="affil">
+                        <h4><a href="https://mlpi.ing.unipi.it/" target="_blank">MLPI Group <i class="fas fa-arrow-up-right-from-square"></i></a></h4>
+                        <p>Machine Learning &amp; Process Intelligence Group, Pisa</p>
+                    </div>
+                    <div class="affil">
+                        <h4><a href="https://www.centropiaggio.unipi.it/" target="_blank">Centro Piaggio <i class="fas fa-arrow-up-right-from-square"></i></a></h4>
+                        <p>Affiliated Researcher</p>
+                    </div>
+                    <div class="affil">
+                        <h4><a href="https://braveproject.unipi.it/" target="_blank">BRAVE Project <i class="fas fa-arrow-up-right-from-square"></i></a></h4>
+                        <p>Project Member</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SIDE QUESTS: PARALLEL RESEARCH -->
-        <section>
-            <div class="card">
-                <h3 class="section-title"><i class="fas fa-project-diagram"></i> Interdisciplinary Research & Simulation</h3>
-                <p class="section-subtitle">
-                    Complementing my work in humanoid robotics, my research extends into affective computing and high-fidelity virtual environments, driving the development of a comprehensive ecosystem for human-machine interaction.
-                </p>
-                
-                <div style="display: grid; grid-template-columns: 4fr 6fr; gap: 80px; margin: 40px auto 0; max-width: 90%;">
-                    
-                    <!-- AFFECTIVE COMPUTING & SAD -->
-                    <div style="display: flex; flex-direction: column; gap: 20px;">
-                        <h4 style="color: #fff; font-size: 1.3rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;"><i class="fas fa-heartbeat" style="color: var(--accent); margin-right: 10px;"></i> Affective Computing</h4>
-                        
-                        <div class="split-media" style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
-                            <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; align-items: stretch;">
-                                <div class="media-item" style="flex: 2.21; margin: auto 0;">
-                                    <img src="images/sad/brave_exp.png" alt="VR Scenario Setup" style="width: 100%; height: auto; object-fit: contain;">
-                                </div>
-                                <div class="media-item" style="flex: 1.78; margin: auto 0;">
-                                    <img src="images/sad/brave_realtime.jpg" alt="Realtime Data Interface" style="width: 100%; height: auto; object-fit: contain;">
-                                </div>
-                            </div>
-                            
-                            <!-- New PDF Diagram Row -->
-                            <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; justify-content: center;">
-                                <div class="media-item" style="flex: 1; width: 100%; background: #fff; padding: 10px;">
-                                    <img src="images/sad/transformer_encoder_architecture.png" alt="Late Fusion Transformer Architecture" style="width: 100%; height: auto; object-fit: contain;">
-                                    <div class="media-caption" style="background: transparent; color: #333; padding-bottom: 0;">Late Fusion Transformer Architecture</div>
-                                </div>
-                            </div>
-
-                            <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; justify-content: center;">
-                                <div class="media-item" style="flex: 1.38; width: 100%;">
-                                    <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px; border: var(--border);">
-                                        <source src="images/sad/brave_video_cut.mp4" type="video/mp4">
-                                    </video>
-                                    <div class="media-caption">Real-time anxiety level detection during the VR experience. This is fast forwarded by 8 times.</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
-                            <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px; font-size: 0.95rem;">
-                                In our initial work on continuous assessment of Social Anxiety Disorder (SAD) in Virtual Reality, we focused on <strong>multimodal classification</strong>. By integrating continuous self-ratings with objective physiological data (ECG/EDA), our Late Fusion Transformer framework successfully classified high and low anxiety groups, achieving an F1-score of 0.853 and 82.5% accuracy.
-                            </p>
-                            <p style="color: var(--text-muted); line-height: 1.8; font-size: 0.95rem;">
-                                We are now tackling the significantly more complex challenge of <strong>multivariate continuous regression</strong> to map dynamic, in-the-moment physiological signals directly to the user's fluctuating emotional state.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- UNREAL ENGINE & METAHUMANS -->
-                    <div style="display: flex; flex-direction: column; gap: 20px;">
-                        <h4 style="color: #fff; font-size: 1.3rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;"><i class="fas fa-cube" style="color: var(--accent); margin-right: 10px;"></i> Unreal Engine & MetaHumans</h4>
-                        
-                        <div class="split-media" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%;">
-                            <!-- Row 1 -->
-                            <div class="media-item" style="margin: 0;"><img src="images/ue/aoi_ada_looking_around.jpg" alt="AOI and ADA" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"></div>
-                            <div class="media-item" style="margin: 0;"><img src="images/ue/aoi_cams.jpg" alt="AOI Cameras" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"></div>
-                            <div class="media-item" style="margin: 0; grid-row: span 2;"><video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; border: var(--border);"><source src="images/ue/aoi_holobox.mp4" type="video/mp4"></video></div>
-                            <!-- Row 2 -->
-                            <div class="media-item" style="margin: 0;"><video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"><source src="images/ue/aoi_cut.mp4" type="video/mp4"></video></div>
-                            <div class="media-item" style="margin: 0;"><img src="images/ue/jeff_mazzei_static_mesh.jpg" alt="Static Meshes" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"></div>
-                            <!-- Row 3 -->
-                            <div class="media-item" style="margin: 0;"><video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"><source src="images/ue/mazzei_cut.mp4" type="video/mp4"></video></div>
-                            <div class="media-item" style="margin: 0;"><img src="images/ue/jefferson_hair.jpg" alt="Hair Grooming" style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"></div>
-                            <div class="media-item" style="margin: 0;"><video autoplay loop muted playsinline style="width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: var(--border);"><source src="images/ue/jeff_cut.mp4" type="video/mp4"></video></div>
-                        </div>
-                        
-                        <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
-                            <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 15px; font-size: 0.95rem;">
-                                The process of reviving historical figures begins with high-density point clouds, meticulously converted into workable static meshes directly within Unreal Engine. Advanced grooming tools recreate fine details, followed by rigging intricate models to the MetaHuman framework.
-                            </p>
-                            <p style="color: var(--text-muted); line-height: 1.8; font-size: 0.95rem;">
-                                These digital avatars can be projected into physical Holoboxes. Displaying MetaHumans holographically requires a complex multi-camera setup within Unreal Engine to render specific angles simultaneously, constructing a seamless 3D illusion.
-                            </p>
-                        </div>
-                    </div>
+        <!-- PUBLICATIONS -->
+        <section id="publications">
+            <div class="wrap">
+                <p class="eyebrow"><i class="fas fa-book-open"></i> Publications</p>
+                <h2>Selected publications</h2>
+                <div id="scholar-feed" class="list">
+                    <div class="row"><span class="main">Loading…</span><span class="meta"><i class="fas fa-sync fa-spin"></i></span></div>
                 </div>
             </div>
         </section>
 
         <!-- EDUCATION -->
-        <section>
-            <div class="card">
-                <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h3>
-                
-                <div class="edu-item">
-                    <div class="edu-header">
-                        <h4>PhD in Smart Industry</h4>
-                        <span class="edu-date">Nov 2024 - Present</span>
-                    </div>
-                    <p class="edu-details">University of Pisa</p>
-                </div>
-                
-                <div class="edu-item">
-                    <div class="edu-header">
-                        <h4>M.Sc. Artificial Intelligence & Data Engineering</h4>
-                        <span class="edu-date">2022 - 2024</span>
-                    </div>
-                    <p class="edu-details">University of Pisa | <b>110/110 cum laude</b></p>
-                    <p class="edu-details" style="margin-top: 5px;"><i>Thesis: Service-Oriented Cognitive System for Social Robotics orchestrated by LLMs</i></p>
-                </div>
-
-                <div class="edu-item">
-                    <div class="edu-header">
-                        <h4>B.Sc. Computer Engineering</h4>
-                        <span class="edu-date">2019 - 2022</span>
-                    </div>
-                    <p class="edu-details">University of Pisa | <b>110/110 cum laude</b></p>
-                </div>
-            </div>
-        </section>
-
-                <!-- BOTTOM LAYOUT: PUBLICATIONS (70) AND AWARDS (30) -->
-        <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 100px;">
-            <!-- PUBLICATIONS -->
-            <section id="publications" style="flex: 7; min-width: 300px; margin-bottom: 0;">
-                <div class="card" style="height: 100%;">
-                    <h3 class="section-title"><i class="fas fa-book-open"></i> Publications</h3>
-                    <p style="color:var(--text-muted); font-style: italic; margin-bottom: 20px;">
-                        From Google Scholar
-                    </p>
-                    <div id="scholar-feed" class="list-container">
-                        <div class="list-item">
-                             <span>Waiting for fetch...</span> <i class="fas fa-sync fa-spin"></i>
+        <section id="education">
+            <div class="wrap">
+                <p class="eyebrow"><i class="fas fa-graduation-cap"></i> Education</p>
+                <h2>Education</h2>
+                <div class="edu">
+                    <div class="edu-item">
+                        <div class="edu-top">
+                            <h4>PhD in Smart Industry</h4>
+                            <span class="edu-date">Nov 2024 – Present</span>
                         </div>
+                        <p>University of Pisa</p>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-top">
+                            <h4>M.Sc. in Artificial Intelligence &amp; Data Engineering</h4>
+                            <span class="edu-date">2022 – 2024</span>
+                        </div>
+                        <p>University of Pisa · <strong style="color:var(--ink)">110/110 cum laude</strong></p>
+                        <p class="thesis">Thesis: Service-Oriented Cognitive System for Social Robotics orchestrated by LLMs</p>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-top">
+                            <h4>B.Sc. in Computer Engineering</h4>
+                            <span class="edu-date">2019 – 2022</span>
+                        </div>
+                        <p>University of Pisa · <strong style="color:var(--ink)">110/110 cum laude</strong></p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- AWARDS -->
-            <section id="awards" style="flex: 3; min-width: 300px; margin-bottom: 0;">
-                <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 30px; height: 100%;">
-                    <div style="width: 100%;">
-                        <img src="images/best_graph_abstract.jpg" alt="Best Graphical Abstract" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); display: block; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
-                    </div>
-                    <div style="text-align: center;">
-                        <h3 class="section-title" style="margin-bottom: 15px; justify-content: center;"><i class="fas fa-award"></i> Featured Award</h3>
-                        <p style="font-size: 1.2rem; color: var(--text-main);">
-                            <strong>IEEE MetroXraine 2025</strong><br>
-                            <span style="color: var(--text-muted); font-size: 1rem;">Best Graphical Abstract</span>
-                        </p>
+        <!-- AWARD -->
+        <section id="award">
+            <div class="wrap">
+                <p class="eyebrow"><i class="fas fa-award"></i> Award</p>
+                <h2>Featured award</h2>
+                <div class="award">
+                    <figure>
+                        <img src="images/best_graph_abstract.jpg" alt="Best Graphical Abstract — IEEE MetroXraine 2025">
+                    </figure>
+                    <div class="txt">
+                        <h3>Best Graphical Abstract</h3>
+                        <div class="prose"><p>Awarded at <strong>IEEE MetroXraine 2025</strong> for the graphical abstract of our work on cognitive architectures and extended reality.</p></div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
 
-        <!-- SELECTED PROJECTS -->
-        <section>
-            <div class="card">
-                <h3 class="section-title"><i class="fas fa-code-branch"></i> Selected Projects</h3>
-                <div class="list-container">
-                    <a href="https://github.com/ilmarcopardo/LSMSD-Project" class="list-item">
-                        <span>Board Games Web App</span> <i class="fas fa-external-link-alt"></i>
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="wrap">
+                <p class="eyebrow"><i class="fas fa-code-branch"></i> Projects</p>
+                <h2>Selected projects</h2>
+                <div class="list">
+                    <a class="row" href="https://github.com/ilmarcopardo/LSMSD-Project" target="_blank">
+                        <span class="main">Board Games Web App</span>
+                        <span class="meta"><i class="fab fa-github"></i></span>
                     </a>
-                    <a href="https://github.com/ilmarcopardo/ActivityRecognizer" class="list-item">
-                        <span>Activity Recognizer App</span> <i class="fas fa-external-link-alt"></i>
+                    <a class="row" href="https://github.com/ilmarcopardo/ActivityRecognizer" target="_blank">
+                        <span class="main">Activity Recognizer App</span>
+                        <span class="meta"><i class="fab fa-github"></i></span>
                     </a>
-                    <a href="https://github.com/ilmarcopardo/MIRCVProject" class="list-item">
-                        <span>Search Engine for MsMarco</span> <i class="fas fa-external-link-alt"></i>
+                    <a class="row" href="https://github.com/ilmarcopardo/MIRCVProject" target="_blank">
+                        <span class="main">Search Engine for MS MARCO</span>
+                        <span class="meta"><i class="fab fa-github"></i></span>
                     </a>
-                    <a href="https://github.com/ilmarcopardo/smart_greenhouse" class="list-item">
-                        <span>Smart Greenhouse Monitoring</span> <i class="fas fa-external-link-alt"></i>
+                    <a class="row" href="https://github.com/ilmarcopardo/smart_greenhouse" target="_blank">
+                        <span class="main">Smart Greenhouse Monitoring</span>
+                        <span class="meta"><i class="fab fa-github"></i></span>
                     </a>
-                    <a href="https://github.com/ilmarcopardo/reinforcement_learning" class="list-item">
-                        <span>Actor-Critic for CartPole-v1</span> <i class="fas fa-external-link-alt"></i>
+                    <a class="row" href="https://github.com/ilmarcopardo/reinforcement_learning" target="_blank">
+                        <span class="main">Actor-Critic for CartPole-v1</span>
+                        <span class="meta"><i class="fab fa-github"></i></span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <footer style="text-align: center; color: var(--text-muted); padding-bottom: 40px; font-size: 0.9rem;">
-            <p>&copy; 2024 Marco Pardini. Crafted with AI & Human Creativity.</p>
-        </footer>
+    </main>
 
-    </div>
+    <footer>
+        <div class="wrap">
+            <p>© 2026 Marco Pardini · University of Pisa</p>
+            <div class="social">
+                <a href="https://scholar.google.com/citations?user=1XGhMwgAAAAJ" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                <a href="https://github.com/ilmarcopardo" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://it.linkedin.com/in/marco-pardini-12a566236" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:marco.pardini00@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        /* --- PARTICLES.JS CONFIGURATION --- */
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": ["#00d4ff", "#8b5cf6", "#ffffff"] },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.4, "random": true },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": { "enable": true, "mode": "bubble" },
-                    "onclick": { "enable": true, "mode": "repulse" },
-                    "resize": true
-                },
-                "modes": {
-                    "bubble": { "distance": 200, "size": 6, "duration": 2, "opacity": 0.8, "speed": 3 },
-                    "repulse": { "distance": 200, "duration": 0.4 }
-                }
-            },
-            "retina_detect": true
-        });
-
-        /* --- GOOGLE SCHOLAR JSON FETCH --- */
+        /* --- GOOGLE SCHOLAR PUBLICATIONS --- */
         const fallbackPublications = [
-            { "title": "Multimodal Classification of Social Anxiety Using Continuous Self-Rating and Physiological Data in Virtual Reality", "year": "2026", "url": "#", "venue": "IEEE Transactions on Affective Computing, 2026" },
-            { "title": "Deep Learning-Based Classification of Social Anxiety Disorder Using Continuous Self-Reported Anxiety in Virtual Reality", "year": "2025", "url": "#", "venue": "2025 IEEE Medical Measurements & Applications (MeMeA), 1-6, 2025" },
-            { "title": "Development of a human-inspired long-term memory for interactive conversational agents", "year": "2025", "url": "#", "venue": "2025 IEEE International Conference on Metrology for eXtended Reality …, 2025" },
-            { "title": "A comparative evaluation of function-calling llms in a cognitive architecture", "year": "2025", "url": "#", "venue": "2025 IEEE International Conference on Metrology for eXtended Reality …, 2025" },
-            { "title": "Interpersonal Sympathetic Coupling in Emotional Contagion: A Preliminary Study Using Directed Coherence", "year": "2025", "url": "#", "venue": "2025 IEEE Medical Measurements & Applications (MeMeA), 1-6, 2025" }
+            { "title": "Multimodal Classification of Social Anxiety Using Continuous Self-Rating and Physiological Data in Virtual Reality", "year": "2026", "url": "#", "citations": 0, "venue": "IEEE Transactions on Affective Computing, 2026" },
+            { "title": "Deep Learning-Based Classification of Social Anxiety Disorder Using Continuous Self-Reported Anxiety in Virtual Reality", "year": "2025", "url": "#", "citations": 2, "venue": "2025 IEEE Medical Measurements & Applications (MeMeA)" },
+            { "title": "Development of a human-inspired long-term memory for interactive conversational agents", "year": "2025", "url": "#", "citations": 1, "venue": "2025 IEEE Int. Conf. on Metrology for eXtended Reality" },
+            { "title": "A comparative evaluation of function-calling LLMs in a cognitive architecture", "year": "2025", "url": "#", "citations": 1, "venue": "2025 IEEE Int. Conf. on Metrology for eXtended Reality" },
+            { "title": "Interpersonal Sympathetic Coupling in Emotional Contagion: A Preliminary Study Using Directed Coherence", "year": "2025", "url": "#", "citations": 0, "venue": "2025 IEEE Medical Measurements & Applications (MeMeA)" }
         ];
 
         function renderPublications(data) {
             const container = document.getElementById('scholar-feed');
-            container.innerHTML = ''; 
-
-            if (data.length === 0) {
-                container.innerHTML = '<div class="list-item"><span>No publications found yet.</span></div>';
+            container.innerHTML = '';
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="row"><span class="main">No publications found yet.</span></div>';
                 return;
             }
-
             data.forEach(pub => {
                 const href = pub.url && pub.url !== '#' ? pub.url : 'https://scholar.google.com/citations?user=1XGhMwgAAAAJ';
                 const a = document.createElement('a');
-                a.href = href;
-                a.target = '_blank';
-                a.className = 'list-item';
-                const venueStr = pub.venue ? `<span style="display:block; font-size:0.85rem; color:var(--accent); margin-top:3px; font-style:italic;">${pub.venue}</span>` : '';
+                a.href = href; a.target = '_blank'; a.className = 'row';
+                const venue = pub.venue ? `<span class="venue">${pub.venue}</span>` : '';
                 a.innerHTML = `
-                    <div>
-                        <span style="display:block; margin-bottom:5px;">${pub.title}</span>
-                        ${venueStr}
-                    </div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="font-size:0.85rem; color:var(--text-muted);">${pub.year}</span>
-                        <i class="fas fa-external-link-alt"></i>
-                    </div>
+                    <span class="main">${pub.title}${venue}</span>
+                    <span class="meta"><span>${pub.year}</span><i class="fas fa-arrow-up-right-from-square"></i></span>
                 `;
                 container.appendChild(a);
             });
         }
 
         fetch('publications.json')
-            .then(response => {
-                if (!response.ok) throw new Error("Network error");
-                return response.json();
-            })
-            .then(data => renderPublications(data))
-            .catch(error => {
-                console.warn('Fetch failed (likely CORS on local file://). Using embedded fallback data.', error);
-                renderPublications(fallbackPublications);
-            });
+            .then(r => { if (!r.ok) throw new Error('network'); return r.json(); })
+            .then(renderPublications)
+            .catch(() => renderPublications(fallbackPublications));
     </script>
 </body>
 </html>
